@@ -1,0 +1,101 @@
+body {
+    // background-color: rgb(24, 24, 24);
+    // background-color: #fff;
+    color: #000;
+    font-family: Roboto;
+
+    // dark mode owo
+}
+
+hr { margin: 40px 20px 20px 20px; }
+.red { color: #e74c3c; }
+.disqDrawerLink{ color: #000; text-decoration: none; }
+
+.disqBigLogo {
+    width: 20vh;
+    height: 20vh;
+}
+
+.disqLoginDialog {
+    padding: 50px;
+}
+
+.disqLoginDialogClose {
+    cursor: 'pointer'; 
+    float: right; 
+    margin-top: '5px'; 
+    width: '20px';
+}
+
+$drawerWidth: 240px;
+.disqDrawer {
+    width: $drawerWidth;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.disqAppBar {
+    // margin-left: $drawerWidth;
+    // width: calc(100% - $drawerWidth);
+    z-index: 10;
+}
+
+.disqPaper {
+    width: $drawerWidth;
+    // overflow: auto;
+}
+
+.disqDrawerContainer {
+    overflow: auto;
+}
+
+.disqAppContainer {
+    display: flex;
+}
+
+.disqPageContents {
+    flex-grow: 1;
+    padding-top: 90px;
+}
+
+.disqSupercenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.disqDrag {
+    text-align: center;
+}
+
+.disqDragText {
+    color: #d1d1d1;
+    font-size: 22px;
+}
+
+.disqDragText2 {
+    color: #b3b3b3;
+    font-size: 16px;
+}
+
+.disqPageButton {
+    padding-top: 20px;
+    padding-bottom: 50px; 
+}
+
+.disqPageButtonLeft {
+    float: left;
+}   
+
+.disqPageButtonRight {
+    float: right;
+}
+
+
+.disqDivCenter {
+    width: 50%;
+    margin: 0;
+}
+
+.disqCenter { text-align: center; }
