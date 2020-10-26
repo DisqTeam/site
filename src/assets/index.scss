@@ -1,3 +1,155 @@
 /* 
 Disq SCSS
 */
+
+$brand_color_1: #0c0f14;
+$brand_color_2: #131820;
+$watermark_color:  #1b2636;
+
+body {
+    background-color: $brand_color_1;
+    color: #fff;
+    font-family: "Roboto";
+    margin: 0;
+}
+
+.main_text{
+    font-family: "Roboto Mono";
+    font-size: 70px;
+    // font-style: italic;
+    margin: 0;
+    transform: skew(10deg);
+
+    background-color: white;
+    // background: linear-gradient(90deg, rgba(68,125,204,1) 0%, rgba(65,44,170,1) 100%) 2px;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main_text_shape {
+    padding: 10px;
+    transform: skew(-10deg);
+    background: linear-gradient(90deg, rgba(68,204,182,1) 0%, rgba(60,157,212,1) 30%, rgba(126,103,209,1) 70%, rgba(143,21,199,1) 100%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+}
+
+.main_box{
+    padding: 100px;
+    background-color: $brand_color_2;
+    border-radius: 15px;
+}
+
+.tagline_text{ font-weight: 400; }
+button {
+    margin: 4px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(38, 48, 77);
+}
+
+input {
+    margin: 4px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    background-color: rgb(38, 48, 77);
+    background-color: rgb(38, 48, 77);
+
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 20px;
+    color: #fff;
+}
+
+// .btn_blu{  background-color: rgb(33, 110, 216); }
+// .btn_blu_2{  background-color: rgb(99, 43, 204); }
+.btn_porp{ background-color: #6812ca; }
+
+.stringy_software_watermark{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+.stringy_software_watermark p {
+    margin: 0;
+    color: $watermark_color;
+}
+
+.stringy_software_watermark a {
+    margin: 0;
+    color: #243247;
+    text-decoration: none;
+}
+
+.login_input_container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.login_back_button {
+    font-size: 20px;
+    padding: 8px 14px 8px 14px;
+    background-color: #c72b2b;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.login_error {
+    // color: #d63c3c;
+    color: #6f14d8;
+    font-weight: 500;
+    text-align: left;
+    margin: 0;
+    margin-left: 5px;
+}
+
+.box-transition-enter {
+    opacity: 0;
+}
+
+.box-transition-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.box-transition-exit {
+    opacity: 1;
+}
+
+.box-transition-exit-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.center { text-align: center; }
+.supercenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
