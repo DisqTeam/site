@@ -103,8 +103,7 @@ class BoxLogin extends React.Component{
             method: "POST",
             body: JSON.stringify({
                 username: this.state.username,
-                password: this.state.password,
-                error_text: ""
+                password: this.state.password
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -113,6 +112,8 @@ class BoxLogin extends React.Component{
         .then(res => res.json())
         .then(disq => {
             if(!disq.success) return this.setState({error_text: disq.description})
+            localStorage.token = disq.token
+            window.location = '/dashboard'
         })
     }
 
@@ -155,8 +156,7 @@ class BoxRegister extends React.Component{
             body: JSON.stringify({
                 email: this.state.email,
                 username: this.state.username,
-                password: this.state.password,
-                error_text: ""
+                password: this.state.password
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -165,6 +165,12 @@ class BoxRegister extends React.Component{
         .then(res => res.json())
         .then(disq => {
             if(!disq.success) return this.setState({error_text: disq.description})
+            localStorage.token = disq.token
+            window.location = '/dashboard'
+        })
+        .catch((err) => {
+            this.setState({error_text: "An error occured! Check the console for more info"})
+            console.log(err)
         })
     }
 

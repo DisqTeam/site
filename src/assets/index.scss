@@ -122,7 +122,7 @@ input {
 
 .box-transition-enter-active {
     opacity: 1;
-    transition: opacity 500ms;
+    transition: all 500ms;
 }
 
 .box-transition-exit {
@@ -131,7 +131,7 @@ input {
 
 .box-transition-exit-active {
     opacity: 1;
-    transition: opacity 500ms;
+    transition: all 500ms;
 }
 
 .center { text-align: center; }
@@ -140,6 +140,17 @@ input {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+
+.fof-pensive {
+    width: 80px;
+}
+
+.twemoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
 }
 
 @keyframes gradient {

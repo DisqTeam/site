@@ -1,3 +1,4 @@
 {
-    "endpoint": "http://localhost:8415"
+    "endpoint": "http://localhost:8415",
+    "reCaptchaKey": "6Lfl9tsZAAAAAK5Z2XyEYRLbWtRAzjd2LXahOIg1"
 }
