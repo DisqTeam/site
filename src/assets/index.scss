@@ -4,6 +4,7 @@ Disq SCSS
 
 $brand_color_1: #0c0f14;
 $brand_color_2: #131820;
+$brand_color_3: #0a0d11;
 $watermark_color:  #1b2636;
 
 body {
@@ -73,7 +74,9 @@ input {
 
 // .btn_blu{  background-color: rgb(33, 110, 216); }
 // .btn_blu_2{  background-color: rgb(99, 43, 204); }
+.btn_blu_3{  background-color: rgb(53, 81, 158); }
 .btn_porp{ background-color: #6812ca; }
+.btn_rod{ background-color: #cc1a23; }
 
 .stringy_software_watermark{
     position: absolute;
@@ -132,6 +135,140 @@ input {
 .box-transition-exit-active {
     opacity: 1;
     transition: all 500ms;
+}
+
+$sidebar-width: 270px;
+
+.sidebar {
+    height: 100%;
+    width: $sidebar-width;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: $brand_color_2;
+    overflow-x: hidden;
+}
+
+.sidebar_big{
+    margin: 5px;
+    padding: 20px;
+    border-radius: 10px;
+    display: block;
+    text-decoration: none;
+    // width: $sidebar-width;
+    color: #fff;
+    background-color: $brand_color_1;
+}
+
+.sidebar_option{
+    margin: 5px;
+    padding: 20px;
+    border-radius: 10px;
+    display: block;
+    text-decoration: none;
+    // width: $sidebar-width;
+    color: #fff;
+    background-color: $brand_color_3;
+    transition: 0.2s;
+}
+
+.sidebar_option:hover{
+    background-color: #0e1318;
+}
+
+.user_card{
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+}
+
+.user_card h4 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.avatar_container{
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+}
+
+.avatar_img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.disq_content {
+    margin-left: $sidebar-width + 25px;
+}
+
+.welcomeback {
+    margin-top: 25px;
+    font-size: 4vw;
+    font-family: "Roboto";
+}
+
+.quick_actions{
+    display: flex;
+    font-family: Roboto;
+}
+
+.quick_action{
+    text-align: center;
+    height: 19vw;
+    width: 15vw;
+    padding: 20px;
+    margin: 5px;
+    background-color: $brand_color_2;
+    border-radius: 10px;
+    position: relative;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.quick_action:hover{
+    background-color: #0e1318;
+}
+
+
+.quick_action span{ font-size: 10vw; }
+.quick_action img{ width: 10vw; }
+.quick_actions a{
+    text-decoration: none;
+}
+
+.quick_action_button{
+    // width: 3vw;
+    // height: 2vw;
+    font-size: 1vw;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+table, th, td {
+    padding: 10px;
+    // border: 1px solid rgb(105, 116, 122);
+}
+
+th {
+    height: 70px;
+    background-color: #0e1318;
+}
+
+tr:nth-child(even) {background-color: #0e1016;}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    background-color: $brand_color_3;
+    border-radius: 5px;
 }
 
 .center { text-align: center; }

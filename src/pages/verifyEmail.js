@@ -29,7 +29,7 @@ class index extends React.Component {
         fetch(`${config.endpoint}/auth/verifyEmail`, {
             method: "POST",
             body: JSON.stringify({
-                emailToken: this.email_token,
+                emailToken: this.state.email_token,
                 captcha: value
             }),
             headers: {
