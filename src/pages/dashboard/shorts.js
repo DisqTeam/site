@@ -6,8 +6,7 @@ import check_token from '../../components/TokenChecker'
 import EmailVerifyNotice from '../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../components/DisabledAccNotice'
 import Sidebar from '../../components/Sidebar'
-
-import ShareXIcon from '../../assets/sharex_white.png'
+import config from '../../config.json';
 
 class index extends React.Component {
     constructor(props){
@@ -44,9 +43,31 @@ class DashboardPage extends React.Component {
                 administrator: false,
                 verified: false
             },
-            sidebar: ""
+            sidebar: "",
+            tableData: "",
+            page: 0
         }
         this.props.SSR.bind(this);
+    }
+
+    getSurl = async () => {
+        fetch(`${config.endpoint}/surl/list/${this.state.page}`, {
+            headers: {
+                'token': localStorage.token
+            }
+        })
+        .then(res => res.json())
+        .then(surls => {
+            let tableData = surls.shorts.map(s => (
+                <tr>
+                    <td>{window.location.origin + "/" + s.shortcode}</td>
+                    <td>{s.url}</td>
+                    <td><button className="btn_rod" onClick={null}><span class="material-icons">delete</span></button></td>
+                </tr>
+            ))
+            this.setState({tableData})
+        })
+            
     }
 
     async componentDidMount() {
@@ -55,6 +76,8 @@ class DashboardPage extends React.Component {
         if(userInfo.accountDisabled) return this.props.SSR({ "pageState": <DisabledAccNotice/> })
         this.setState({user: userInfo.user})
         this.setState({sidebar: <Sidebar user={this.state.user}/>})
+        
+        this.getSurl()
     }
 
     render() {
@@ -62,22 +85,15 @@ class DashboardPage extends React.Component {
             <main>
                 {this.state.sidebar}
                 <div className="disq_content">
-                    <h1 className="welcomeback">Welcome back, {this.state.user.username}</h1>
-                    <div className="quick_actions">
-                        
-                        <a href="/dashboard/upload"><div className="quick_action">
-                            <h3>Upload some files</h3>
-                            <span className="material-icons">cloud_upload</span>
-                        </div></a>
-                        <a href="/dashboard/shorts"><div className="quick_action">
-                            <h3>Create Short URLs</h3>
-                            <span className="material-icons">link</span>
-                        </div></a>
-                        <a href="/dashboard/sharex"><div className="quick_action">
-                            <h3>Configure ShareX</h3>
-                            <img src={ShareXIcon} alt="ShareX"></img>
-                        </div></a>
-                    </div>
+                    <h1 className="welcomeback">Short URLs</h1>
+                    <table className="disq_table">
+                        <tr>
+                            <th>Short URL</th>
+                            <th>Original URL</th>
+                            <th>Actions</th>
+                        </tr>
+                        {this.state.tableData}
+                    </table>
                 </div>
             </main>
         );
