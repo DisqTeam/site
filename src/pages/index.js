@@ -74,10 +74,14 @@ class BoxMain extends React.Component {
                         <h1 className="main_text">Disq</h1>
                     </div>
                     <h3 className="tagline_text">File upload, short urls and many more.</h3>
-                    <div className="main_btn_container">
-                        <button onClick={() => this.props.SSR({box_state: <BoxLogin SSR={this.props.SSR}/>, box_animate: true})} className="btn_blu">Login</button>
-                        <button onClick={() => this.props.SSR({box_state: <BoxRegister SSR={this.props.SSR}/>, box_animate: true})} className="btn_blu_2">Register</button>
-                    </div>
+                        {
+                            (config.comingSoonMode) 
+                            ? <p>Coming soon.</p>
+                            : <div className="main_btn_container">
+                                <button onClick={() => this.props.SSR({box_state: <BoxLogin SSR={this.props.SSR}/>, box_animate: true})} className="btn_blu">Login</button>
+                                <button onClick={() => this.props.SSR({box_state: <BoxRegister SSR={this.props.SSR}/>, box_animate: true})} className="btn_blu_2">Register</button>
+                              </div>
+                        }
                 </div>
         )   
     }
