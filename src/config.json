@@ -1,5 +1,6 @@
 {
-    "comingSoonMode": true,
+    "comingSoonMode": false,
     "endpoint": "https://api.disq.me",
+    "imagesFolder": "D:\\Documents\\Programming\\Node.js\\Disq\\DisqAPI\\files",
     "reCaptchaKey": "6Lfl9tsZAAAAAK5Z2XyEYRLbWtRAzjd2LXahOIg1"
 }
