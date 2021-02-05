@@ -26,7 +26,7 @@ class Sidebar extends Component {
                 <div className="sidebar_big">
                     <div className="user_card">
                         <div className="avatar_container">
-                            <img className="avatar_img" alt="Avatar" src="https://twinimi.is-cute.cf/koMI8.png"></img>
+                            <img className="avatar_img" alt="Avatar" src="https://disq.me/koMI8.png"></img>
                         </div>
                         <h4>{this.state.user.username}</h4>
                     </div>
