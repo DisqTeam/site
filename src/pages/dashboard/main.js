@@ -41,8 +41,10 @@ class DashboardPage extends React.Component {
         this.state = {
             user: {
                 username: "Loading..",
-                administrator: false,
-                verified: false
+                privileges: {
+                    administrator: false,
+                    verified: false
+                }
             },
             sidebar: ""
         }
@@ -53,6 +55,7 @@ class DashboardPage extends React.Component {
         let userInfo = await check_token()
         if(userInfo.emailVerify) return this.props.SSR({ "pageState": <EmailVerifyNotice email={userInfo.email}/> })
         if(userInfo.accountDisabled) return this.props.SSR({ "pageState": <DisabledAccNotice/> })
+        if(!userInfo.success) return window.location.href = '/'
         this.setState({user: userInfo.user})
         this.setState({sidebar: <Sidebar user={this.state.user}/>})
     }

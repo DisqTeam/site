@@ -17,7 +17,7 @@ class index extends React.Component {
                             <div className="supercenter center main_box">
                                 <div className="box_main">
                                     <h1>Account Disabled <span role="img" aria-label="disabled">🚫</span></h1>
-                                    <p>Your account has been disabled. Please check your email for more information.</p>
+                                    <p>Your account has been disabled.</p>
                                 </div>
                             </div>
                     </main>

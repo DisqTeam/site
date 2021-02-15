@@ -1,6 +1,7 @@
 import React from 'react';
 import Twemoji from 'react-twemoji';
 import { CSSTransition } from 'react-transition-group';
+import check_token from '../components/TokenChecker'
 
 import '../assets/index.scss';
 import config from '../config.json';
@@ -61,10 +62,20 @@ class BoxMain extends React.Component {
     constructor(props) {
         super(props);
         this.props.SSR.bind(this);
+        this.login.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.SSR({back_button: false})
+
+        const creds = await check_token()
+        if(creds.success) return window.location.href = '/dashboard'
+    }
+
+    login() {
+        const base = "https://discord.com/api/oauth2/authorize"
+        const redirectUri = encodeURIComponent(`${window.location.origin}/auth/cb`)
+        window.location.href = `${base}?client_id=${config.discordClient}&redirect_uri=${redirectUri}&response_type=code&scope=identify email`
     }
 
     render(){
@@ -78,121 +89,11 @@ class BoxMain extends React.Component {
                             (config.comingSoonMode) 
                             ? <p>Coming soon.</p>
                             : <div className="main_btn_container">
-                                <button onClick={() => this.props.SSR({box_state: <BoxLogin SSR={this.props.SSR}/>, box_animate: true})} className="btn_blu">Login</button>
-                                <button onClick={() => this.props.SSR({box_state: <BoxRegister SSR={this.props.SSR}/>, box_animate: true})} className="btn_blu_2">Register</button>
+                                <button onClick={this.login} className="btn_blu">Login</button>
                               </div>
                         }
                 </div>
         )   
-    }
-}
-
-class BoxLogin extends React.Component{
-    constructor(props) {
-        super(props);
-        this.props.SSR.bind(this);
-        this.state = {
-            username: "",
-            password: ""
-        }
-        this.login.bind(this);
-    }
-
-    componentDidMount() {
-        this.props.SSR({back_button: true})
-    }
-
-    login = () => {
-        fetch(`${config.endpoint}/auth/login`, {
-            method: "POST",
-            body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(res => res.json())
-        .then(disq => {
-            if(!disq.success) return this.setState({error_text: disq.description})
-            localStorage.token = disq.token
-            window.location = '/dashboard'
-        })
-    }
-
-    render(){
-        return(
-            <div className="box_login">
-                <h1>Login</h1>
-                <div className="login_input_container">
-                    <input type="text" id="login_username" placeholder="Username" onChange={(e) => this.setState({username: e.target.value})}></input>
-                    <input type="password" id="login_password" placeholder="Password" onChange={(e) => this.setState({password: e.target.value})}></input>
-                    <p className="login_error">{this.state.error_text}</p>
-                </div>
-                <div className="main_btn_container">
-                    <button className="btn_porp" onClick={this.login}>Login</button>
-                </div>
-            </div>
-        )
-    }
-}
-
-class BoxRegister extends React.Component{
-    constructor(props) {
-        super(props);
-        this.props.SSR.bind(this);
-        this.state = {
-            email: "",
-            username: "",
-            password: ""
-        }
-        this.login.bind(this);
-    }
-
-    componentDidMount() {
-        this.props.SSR({back_button: true})
-    }
-
-    login = () => {
-        fetch(`${config.endpoint}/auth/register`, {
-            method: "POST",
-            body: JSON.stringify({
-                email: this.state.email,
-                username: this.state.username,
-                password: this.state.password
-            }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(res => res.json())
-        .then(disq => {
-            if(!disq.success) return this.setState({error_text: disq.description})
-            localStorage.token = disq.token
-            window.location = '/dashboard'
-        })
-        .catch((err) => {
-            this.setState({error_text: "An error occured! Check the console for more info"})
-            console.log(err)
-        })
-    }
-
-    render(){
-        return(
-            <div className="box_login">
-                <h1>Register</h1>
-                <div className="login_input_container">
-                <input type="text" id="login_email" placeholder="Email" onChange={(e) => this.setState({email: e.target.value})}></input>
-                    <input type="text" id="login_username" placeholder="Username" onChange={(e) => this.setState({username: e.target.value})}></input>
-                    <input type="password" id="login_password" placeholder="Password" onChange={(e) => this.setState({password: e.target.value})}></input>
-                    <p className="login_error">{this.state.error_text}</p>
-                </div>
-                <div className="main_btn_container">
-                    <button className="btn_porp" onClick={this.login}>Register</button>
-                </div>
-            </div>
-        )
     }
 }
 

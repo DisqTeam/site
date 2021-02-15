@@ -18,5 +18,4 @@ site.get('/:file', (req, res, next) => {
 
 site.listen(8053, () => {
     console.log(`DisqSite running on port 8053`)
-    console.log
 })

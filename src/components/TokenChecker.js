@@ -2,13 +2,11 @@ import config from '../config.json';
 
 async function check_token() {
     if(!localStorage.token) return { success: false }
-    let res = await fetch(`${config.endpoint}/tokens/verify`, {
+    let res = await fetch(`${config.endpoint}/users/me`, {
         method: "POST",
-        body: JSON.stringify({
-            token: localStorage.token
-        }),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "token": localStorage.token
         }
     })
     let token_state = await res.json()
