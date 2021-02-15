@@ -15,6 +15,9 @@ site.get('/:file', (req, res, next) => {
         res.sendFile(path.join(__dirname, "build/index.html"))
     }
 })
+site.get((req, res, next) => {
+    res.sendFile(path.join(__dirname, "build/index.html"))
+})
 
 site.listen(8053, () => {
     console.log(`DisqSite running on port 8053`)

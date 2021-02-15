@@ -70,7 +70,7 @@ class DashboardPage extends React.Component {
             "Name": "Disq",
             "DestinationType": "ImageUploader, FileUploader",
             "RequestMethod": "POST",
-            "RequestURL": "https://disq.me/upload",
+            "RequestURL": "https://api.disq.me/upload",
             "Headers": {
               "token": "${localStorage.token}",
               "url": "${this.state.baseUrl}"
