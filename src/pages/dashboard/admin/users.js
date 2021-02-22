@@ -76,10 +76,10 @@ class DashboardPage extends React.Component {
                     <td><p>{dayjs.unix(s.timestamp).format('HH:mm:ss DD/MM/YYYY')}</p></td>
                     <td><p>{(s.verified) ? "Yes" : "No"}</p></td>
                     <td className="align_right">
-                        <button className="btn_blu" onClick={() => this.verifyUser(s.userId)}>
+                        <button className="btn_table btn_verify btn_blu" onClick={() => this.verifyUser(s.userId)}>
                             <span class="material-icons">check_circle</span>
                         </button>
-                        <button className="btn_rod" onClick={() => this.disableUser(s.userId)}>
+                        <button className="btn_table btn_delete btn_rod" onClick={() => this.disableUser(s.userId)}>
                             <span class="material-icons">lock</span>
                         </button>
                     </td>

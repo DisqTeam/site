@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ShareXIcon from '../assets/sharex_white.png'
 
 class Sidebar extends Component {
     constructor(props) {
@@ -6,6 +7,7 @@ class Sidebar extends Component {
         this.state = {
             user: {}
         }
+        this.logout.bind(this);
     }
 
     async componentDidMount() {
@@ -15,6 +17,12 @@ class Sidebar extends Component {
         this.setState((prevState, props) => ({
             user: {...prevState.user, "username": username }
         }))
+    }
+
+    logout = (e) => {
+        e.preventDefault()
+        localStorage.token = "";
+        window.location.href = "/";
     }
 
     render() {
@@ -37,8 +45,18 @@ class Sidebar extends Component {
                 <a className="sidebar_option" href="/dashboard/shorts">Short URLs</a>
 
                 <h6 className="sidebar_break">Account</h6>
-                <a className="sidebar_option" href="/dashboard/sharex">ShareX</a>
-                <a className="sidebar_option" href="/dashboard/settings">Settings</a>
+                {/* <a className="sidebar_option" href="/dashboard/sharex">ShareX</a> */}
+                <div className="sidebar_sideby">
+                    <a className="sidebar_option" href="/dashboard/sharex">
+                        <img className="shx_icon" src={ShareXIcon} alt="ShareX"></img>
+                    </a>
+                    <a className="sidebar_option" href="/dashboard/settings">
+                        <span className="material-icons">settings</span>
+                    </a>
+                    <a className="btn_logout btn_rod sidebar_option" href="/" onClick={this.logout}>
+                        <span className="material-icons">logout</span>
+                    </a>
+                </div>
 
                 {
                     (this.props.user.privileges.administrator) 

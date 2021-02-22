@@ -71,7 +71,7 @@ class DashboardPage extends React.Component {
                     <td><a className="table_link" href={window.location.origin + "/s/" + s.shortcode}>{window.location.origin + "/s/" + s.shortcode}</a></td>
                     <td><a className="table_link" href={atob(s.url)}>{atob(s.url)}</a></td>
                     <td className="align_right">
-                        <button className="btn_rod" onClick={() => this.deleteSurl(s.shortcode)}><span class="material-icons">delete</span></button>
+                        <button className="btn_delete btn_rod" onClick={() => this.deleteSurl(s.shortcode)}><span class="material-icons">delete</span></button>
                     </td>
                 </tr>
             ))

@@ -612,3 +612,57 @@ table {
 .piechart {
     width: 240px;
 }
+
+.sidebar_sideby {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sidebar_sideby .sidebar_option {
+    width: 15%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.btn_logout {
+    color: #cc1a23;
+}
+
+.btn_delete {
+    color: #d43131; 
+    background-color: transparent;
+    padding: 5px;
+}
+
+.btn_verify {
+    color: #506091;
+    background-color: transparent;
+    padding: 0;
+}
+
+.btn_table {
+    transition: 0.2s ease;
+}
+
+.btn_table:hover {
+    transform: scale(1.2);
+}
+
+.shx_icon {
+    width: 25px;
+}
+
+.swal2-popup {
+    background-color: $brand_color_2 !important;
+    color: #fff !important;
+}
+
+.swal2-title {
+    color: #fff !important;
+}
+
+.swal2-content {
+    color: #fff !important;
+}

@@ -123,8 +123,9 @@ class DashboardPage extends React.Component {
                 <SweetAlert
                   show={this.state.sa2.show}
                   title="Success!"
-                  text="Your request was submitted"
+                  text="Your request was submitted! We will get back to you in approximately 60 years."
                   onConfirm={() => this.setState({ sa2: {show: false} })}
+                  confirmButtonColor="#6812ca"
                 />
             </main>
         );

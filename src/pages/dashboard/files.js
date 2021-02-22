@@ -72,7 +72,7 @@ class DashboardPage extends React.Component {
                     <td><p>{(s.size / 1024 / 1024).toFixed(2) + "MB"}</p></td>
                     <td><p>{dayjs.unix(s.timestamp).format('HH:mm:ss DD/MM/YYYY')}</p></td>
                     <td className="align_right">
-                        <button className="btn_rod" onClick={() => this.deleteFile(s.name)}><span class="material-icons">delete</span></button>
+                        <button className="btn_delete btn_rod" onClick={() => this.deleteFile(s.name)}><span class="material-icons">delete</span></button>
                     </td>
                 </tr>
             ))
