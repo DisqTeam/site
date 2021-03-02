@@ -18,6 +18,9 @@ import email_verify from "./pages/verifyEmail"
 import notfound from "./pages/404";
 import surl_handler from "./pages/misc/shortUrl";
 
+import tos from "./pages/legal/tos"
+import pp from "./pages/legal/privacy"
+
 function routes() {
   return (
     <main>
@@ -34,6 +37,8 @@ function routes() {
           <Route path='/verifyEmail' component={email_verify} exact/>
           <Route path='/auth/cb' component={auth_cb} exact/>
           <Route path='/s' component={surl_handler}/>
+          <Route path='/tos' component={tos}/>
+          <Route path='/privacy' component={pp}/>
           <Route component={notfound} />
         </Switch>
     </main>

@@ -91,7 +91,7 @@ class DashboardPage extends React.Component {
         .then(res => res.json())
         .then(surl => {
             if(!surl.success) return this.setState({ errorText: surl.description })
-            this.getSurl()
+            this.getSurl(this.state.page)
             this.setState({ errorText: "Created!" })
         })
     }
@@ -105,7 +105,7 @@ class DashboardPage extends React.Component {
         .then(res => res.json())
         .then(surl => {
             if(!surl.success) return this.setState({ errorText: surl.description })
-            this.getSurl()
+            this.getSurl(this.state.page)
             this.setState({ errorText: "Deleted!" })
         })
     }

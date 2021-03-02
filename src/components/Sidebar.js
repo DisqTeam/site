@@ -34,8 +34,11 @@ class Sidebar extends Component {
                             <img className="avatar_img" alt="Avatar" src={this.state.user.avatar}></img>
                         </div>
                         <div className="user_name">
-                            {this.state.user.username}
-                            {(this.props.user.privileges.verified) ? <span className="flag material-icons">check_circle</span> : void(0)}
+                            <div className="user_name_container">
+                                {this.props.user.username.split("#")[0]}
+                                {(this.props.user.privileges.verified) ? <span className="flag material-icons">check_circle</span> : void(0)}
+                            </div>
+                            <p className="user_tag">{"#" + this.props.user.username.split("#")[1]}</p>
                         </div>
                     </div>
                 </div>

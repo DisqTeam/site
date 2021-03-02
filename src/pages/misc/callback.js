@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Spinner from "react-spinkit";
 import VerifyEmail from '../../components/EmailVerifyNotice';
 
 import config from '../../config.json';
 
 export default function AuthCallback() {
-    let [text, setText] = React.useState("Logging you in - Please wait")
+    let [text, setText] = React.useState("Logging you in..")
     let [verify, setVerify] = React.useState("")
 
     React.useEffect(() => {
         const redirectUri = `${window.location.origin}/auth/cb`
 
         const qs = new URLSearchParams(window.location.search);
+        if(qs.get("debug")) return;
+        if(qs.get("error") === "access_denied") return window.location.href = "/"
         if(!qs.get("code")) return setText("No OAuth2 Code!")
 
         fetch(`${config.endpoint}/auth/login`, {
@@ -39,7 +42,10 @@ export default function AuthCallback() {
     
     return (
         <div className="supercenter">
-            <h1>{text}</h1>
+            <div className="load">
+                <Spinner className="spinner" name="folding-cube" fadeIn="none" color="white"/>
+                <h1>{text}</h1>
+            </div>
             {verify}
         </div>
     )

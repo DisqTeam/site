@@ -52,6 +52,7 @@ class DashboardPage extends React.Component {
         }
         this.props.SSR.bind(this);
         this.migrate.bind(this);
+        this.tokenRegen.bind(this);
     }
 
     async componentDidMount() {
@@ -82,6 +83,19 @@ class DashboardPage extends React.Component {
         })
     }
 
+    tokenRegen = () => {
+        fetch(`${config.endpoint}/auth/newToken`, {
+            method: "get",
+            headers: { 'token': localStorage.token, 'Content-Type': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(mg => {
+            if(!mg.success) return this.setState({errorText: mg.description})
+            localStorage.token = mg.token
+            window.location.reload()
+        })
+    }
+
     render() {
         return (
             <main>
@@ -109,7 +123,7 @@ class DashboardPage extends React.Component {
                         <span className="shx_warning">Warning! Regenerating your token will invalidate all current SXCUs and log out every device.</span>
                     </h2>
                     <input className="settings_long settings_blur" value={localStorage.token}></input>
-                    <button onClick={this.createConfig} className="btn_porp">Regenerate</button>
+                    <button onClick={this.tokenRegen} className="btn_porp">Regenerate</button>
 
                     <h2>Legacy Account Migration</h2>
                     <h2 className="shx_desc">
