@@ -2,10 +2,29 @@
 Disq SCSS
 */
 
+@import './css/tooltip.scss';
+
+/* global colors */
+$disq_purple: #6812ca;
 $brand_color_1: #0c0f14;
 $brand_color_2: #131820;
 $brand_color_3: #0a0d11;
 $watermark_color:  #1b2636;
+
+/* button colors */
+$btn_lighten_amount: 10%;
+$btn_transition: 0.1s ease;
+
+.btn_blu_3{ background-color: rgb(53, 81, 158); transition: $btn_transition; }
+.btn_blu_3{ background-color: lighten(rgb(53, 81, 158), $btn_lighten_amount); }
+
+.btn_porp{ background-color: $disq_purple; transition: $btn_transition; }
+.btn_porp:hover{ background-color: lighten($disq_purple, $btn_lighten_amount); }
+
+.btn_rod{ background-color: #cc1a23; transition: $btn_transition; }
+.btn_rod{ background-color: lighten(#cc1a23, $btn_lighten_amount); }
+
+/* the clusterfuck */
 
 body {
     background-color: $brand_color_1;
@@ -27,14 +46,9 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-// .main_text_shape {
-//     padding: 10px;
-//     transform: skew(-10deg);
-//     background: linear-gradient(90deg, rgba(68,204,182,1) 0%, rgba(60,157,212,1) 30%, rgba(126,103,209,1) 70%, rgba(143,21,199,1) 100%);
-//     animation: gradient 15s ease infinite;
-//     background-size: 400% 400%;
-//     min-width: 270px;
-// }
+a {
+    color: #9954e9;
+}
 
 .main_box{
     // padding: 100px;
@@ -46,14 +60,12 @@ body {
 
 .main_logo {
     width: 150px;
-    // margin-top: 20px;
     animation: speeen 2s ease;
 }
 
 .box_main {
     width: 500px;
     height: 450px;
-    // border: springgreen solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,6 +123,7 @@ body {
 }
 
 .tagline_text{ font-weight: 400; }
+
 button {
     margin: 4px;
     padding: 10px 20px 10px 20px;
@@ -126,8 +139,8 @@ button {
 }
 
 input {
-    margin: 4px;
-    padding: 10px 20px 10px 20px;
+    // margin: 4px;
+    padding: 5px 20px 5px 20px;
     border-radius: 5px;
     border: none;
     cursor: text;
@@ -137,15 +150,9 @@ input {
 
     font-family: "Roboto";
     font-weight: 400;
-    font-size: 20px;
+    font-size: 15px;
     color: #fff;
 }
-
-// .btn_blu{  background-color: rgb(33, 110, 216); }
-// .btn_blu_2{  background-color: rgb(99, 43, 204); }
-.btn_blu_3{  background-color: rgb(53, 81, 158); }
-.btn_porp{ background-color: #6812ca; }
-.btn_rod{ background-color: #cc1a23; }
 
 .stringy_software_watermark{
     position: absolute;
@@ -281,20 +288,16 @@ $sidebar-width: 270px;
 
 .welcomeback {
     margin-top: 25px;
-    font-size: 4vw;
+    font-size: 45px;
     font-family: "Roboto";
 }
 
-.quick_actions{
-    display: flex;
-    font-family: Roboto;
-}
-
 .quick_action{
-    text-align: center;
-    height: 16vw;
-    width: 12vw;
-    padding: 20px;
+    text-align: left;
+    // height: 10vw;
+    // width: 12vw;
+    width: 100%;
+    // padding: 20px;
     margin: 5px;
     background-color: $brand_color_2;
     border-radius: 10px;
@@ -303,15 +306,23 @@ $sidebar-width: 270px;
     text-decoration: none;
     transition: 0.2s;
     font-size: 1vw;
+    // flex-grow: 3;
+    
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .quick_action:hover{
     background-color: #0e1318;
 }
 
+$quick_action_size: 2vw;
 
-.quick_action span{ font-size: 10vw; }
-.quick_action img{ width: 10vw; }
+.quick_action span{ font-size: $quick_action_size; margin-left: 10px; }
+.quick_action img{ width: $quick_action_size; margin-left: 10px; }
+.quick_action h3 { margin-left: 10px; }
 .quick_actions a{
     text-decoration: none;
 }
@@ -326,45 +337,45 @@ $sidebar-width: 270px;
     right: 10px;
 }
 
-table, th, td {
-    padding: 10px;
-    // border: 1px solid rgb(105, 116, 122);
-    // border: solid #1a1b2b;
-    // border-radius: 25px;
-}
+// table, th, td {
+//     padding: 0px;
+//     // border: 1px solid rgb(105, 116, 122);
+//     // border: solid #1a1b2b;
+//     // border-radius: 25px;
+// }
 
-th {
-    height: 70px;
-    // border-radius: 25px;
-}
+// th {
+//     height: 70px;
+//     // border-radius: 25px;
+// }
 
-tr:nth-child(even) {background-color: #0e1016;}
+// tr:nth-child(even) {background-color: #0e1016;}
 
-tr td{
-    padding: 0px;
-}
+// tr td{
+//     padding: 0px;
+// }
 
-tr td p, tr td a {
-    margin-left: 10px;
-    // padding: 10px;
-}
+// tr td p, tr td a {
+//     margin-left: 10px;
+//     // padding: 10px;
+// }
 
-thead th {
-    font-size: 28px;
-    text-align: left;
-    border-bottom: solid #0e1016;
-}
+// thead th {
+//     font-size: 28px;
+//     text-align: left;
+//     border-bottom: solid #0e1016;
+// }
 
 .align_right {
     text-align: right;
 }
 
-table {
-    width: 97%;
-    border-collapse: collapse;
-    background-color: $brand_color_3;
-    border-radius: 5px;
-}
+// table {
+//     width: 80%;
+//     border-collapse: collapse;
+//     background-color: $brand_color_3;
+//     border-radius: 5px;
+// }
 
 .center { text-align: center; }
 .supercenter {
@@ -650,6 +661,10 @@ table {
     margin-top: 0;
 }
 
+.settings input[type=password] {
+    margin-left: 5px;
+}
+
 .pls_no {
     margin-top: 10px;
     font-size: 15px;
@@ -691,6 +706,15 @@ table {
     width: 240px;
 }
 
+.sideby {
+    display: flex;
+    flex-direction: row;
+}
+
+.sideby_center {
+    align-items: center;
+}
+
 .sidebar_sideby {
     display: flex;
     flex-direction: row;
@@ -726,6 +750,11 @@ table {
 
 .btn_table:hover {
     transform: scale(1.2);
+}
+
+.btn_small {
+    padding: 5px 20px 5px 20px;
+    font-size: 15px;
 }
 
 .shx_icon {
@@ -822,4 +851,188 @@ table {
 
 .gh:hover {
     transform: scale(1.2);
+}
+
+.quick_drop {
+    width: 100%;
+    height: 10vw;
+    // flex-shrink: 1;
+}
+
+.quick_drop .upload_icon {
+    font-size: 5vw;
+}
+
+.land_container {
+    // display: flex;
+    // flex-direction: row;
+}
+
+.quick_actions{
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto;
+    width: 30vw;
+}
+
+.land_header {
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.land_sideby {
+    display: flex;
+}
+
+.land_cl {
+    margin-left: 25px;
+    width: 30vw;
+}
+
+.nomargin_left { margin-left: 0;}
+
+/* files page */
+.files {
+    display: flex;
+    flex-direction: column;
+}
+
+.files input {
+    width: 190px;
+}
+
+.files .btn_small {
+    margin: 0;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin: 10px 0px 10px 5px
+}
+
+/* Bullshit Tables */
+.disq_table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-width: 0px;
+    
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    // min-width: 400px;
+    width: 98%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.disq_table .icon_display {
+    width: 1px;
+    padding-right: 25px;
+}
+
+.disq_table .url_display {
+    width: 450px;
+}
+
+.disq_table tfoot {
+    margin-top: 5px;
+}
+
+.disq_table thead tr {
+    background-color: $disq_purple;
+    color: #ffffff;
+    text-align: left;
+    font-size: 15px;
+
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.disq_table th {
+    padding: 12px 15px;
+    transition: 0.2s background-color;
+}
+
+.disq_table .reactive_th:hover {
+    background-color: lighten($disq_purple, 10%);
+    cursor: pointer;
+}
+
+.disq_table td {
+    padding: 0px 15px;
+}
+
+.disq_table tbody tr {
+    // border-bottom: 1px solid #1c2735;
+}
+
+.disq_table tbody tr:nth-of-type(even) {
+    background-color: $brand_color_2;
+}
+
+.disq_table tbody tr:last-of-type {
+}
+
+/* pagination */
+.pagination {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 25px;
+}
+
+/* disq switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $watermark_color;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: $brand_color_2;
+    transition: .2s;
+}
+
+input:checked + .slider {
+    background-color: $disq_purple;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switch_subtitle {
+    margin: 10px 0px 10px 10px;
 }

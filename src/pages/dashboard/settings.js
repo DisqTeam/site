@@ -1,6 +1,5 @@
 import React from 'react';
 import Twemoji from 'react-twemoji';
-import SweetAlert from 'sweetalert2-react';
 
 import '../../assets/index.scss';
 import check_token from '../../components/TokenChecker'
@@ -100,7 +99,7 @@ class DashboardPage extends React.Component {
         return (
             <main>
                 {this.state.sidebar}
-                <div className="disq_content">
+                <div className="settings disq_content">
                     <h1 className="welcomeback">Settings</h1>
                     {/* <h2 className="shx_subtitle">Configuring ShareX config for {this.state.user.username}</h2> */}
 
@@ -119,11 +118,21 @@ class DashboardPage extends React.Component {
 
                     <h2>Your Token (hover to view)</h2>
                     <h2 className="shx_desc">
-                        Your token can be used to authenticate with the Disq API.<br/>
+                        Your token can be used to authenticate with the Disq API. <b>Do NOT share it!</b><br/>
                         <span className="shx_warning">Warning! Regenerating your token will invalidate all current SXCUs and log out every device.</span>
                     </h2>
                     <input className="settings_long settings_blur" value={localStorage.token}></input>
                     <button onClick={this.tokenRegen} className="btn_porp">Regenerate</button>
+
+                    <h2>Misc</h2>
+                    <p>These settings will save in your browser.</p>
+                    <div className="sideby_center sideby">
+                        <label class="switch">
+                            <input type="checkbox"/>
+                            <span class="slider round"></span>
+                        </label>
+                        <p className="switch_subtitle">Censor links</p>
+                    </div>
 
                     <h2>Legacy Account Migration</h2>
                     <h2 className="shx_desc">
@@ -131,16 +140,16 @@ class DashboardPage extends React.Component {
                     </h2>
                     <input placeholder="Username" onChange={(e) => this.setState({username: e.target.value})}></input>
                     <input type="password" placeholder="Password" onChange={(e) => this.setState({password: e.target.value})}></input>
-                    <button onClick={this.migrate} className="btn_porp">Start</button><br/>
+                    <button onClick={this.migrate} className="btn_small btn_porp">Start</button><br/>
                     <p className="login_error">{this.state.errorText}</p>
                 </div>
-                <SweetAlert
+                {/* <SweetAlert
                   show={this.state.sa2.show}
                   title="Success!"
                   text="Your request was submitted! We will get back to you in approximately 60 years."
                   onConfirm={() => this.setState({ sa2: {show: false} })}
                   confirmButtonColor="#6812ca"
-                />
+                /> */}
             </main>
         );
     }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Tippy from '@tippyjs/react';
 import ShareXIcon from '../assets/sharex_white.png'
 
 class Sidebar extends Component {
@@ -50,15 +51,22 @@ class Sidebar extends Component {
                 <h6 className="sidebar_break">Account</h6>
                 {/* <a className="sidebar_option" href="/dashboard/sharex">ShareX</a> */}
                 <div className="sidebar_sideby">
-                    <a className="sidebar_option" href="/dashboard/sharex">
-                        <img className="shx_icon" src={ShareXIcon} alt="ShareX"></img>
-                    </a>
-                    <a className="sidebar_option" href="/dashboard/settings">
-                        <span className="material-icons">settings</span>
-                    </a>
-                    <a className="btn_logout btn_rod sidebar_option" href="/" onClick={this.logout}>
-                        <span className="material-icons">logout</span>
-                    </a>
+                    <Tippy theme="disq" animation="discord-anim" content="ShareX" placement="top">
+                        <a className="sidebar_option" href="/dashboard/sharex">
+                            <img className="shx_icon" src={ShareXIcon} alt="ShareX"></img>
+                        </a>
+                    </Tippy>
+                    <Tippy theme="disq" animation="discord-anim" content="Settings" placement="top">
+                        <a className="sidebar_option" href="/dashboard/settings">
+                            <span className="material-icons">settings</span>
+                        </a>
+                    </Tippy>
+                    <Tippy theme="disq" animation="discord-anim" content="Logout" placement="top">
+                        <a className="btn_logout btn_rod sidebar_option" href="/" onClick={this.logout}>
+                            <span className="material-icons">logout</span>
+                        </a>
+                    </Tippy>
+
                 </div>
 
                 {

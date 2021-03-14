@@ -83,7 +83,7 @@ class DashboardPage extends React.Component {
     async componentDidMount() {
         let userInfo = await check_token()
         if(!userInfo.success) return window.location.href = '/'
-        if(!userInfo.user.privileges.administrator) return window.location.href = '/dashboard'
+        if(!userInfo.user.privileges.administrator) return window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         if(userInfo.emailVerify) return this.props.SSR({ "pageState": <EmailVerifyNotice email={userInfo.email}/> })
         if(userInfo.accountDisabled) return this.props.SSR({ "pageState": <DisabledAccNotice/> })
         this.setState({user: userInfo.user})

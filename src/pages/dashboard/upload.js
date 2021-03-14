@@ -102,8 +102,11 @@ class DashboardPage extends React.Component {
             }
         })
         .then((res) => {
-            if(!res.data.success) return this.setState({ errorText: res.data.description })
+            if(!res.data.success) return this.setState({ current: <RecentUpload filename={res.data.file.name} percent={res.data.description}/> })
             this.setState({ current: <RecentUpload filename={res.data.file.name} percent="Uploaded!"/> })
+        })
+        .catch((res) => {
+            this.setState({ current: <RecentUpload filename={files[0].name} percent={res.response.data.description}/> })
         })
     }
 
