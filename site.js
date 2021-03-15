@@ -12,7 +12,7 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
     createServer((req, res) => {
       const parsedUrl = parse(req.url, true)
-      const { pathname, query } = parsedUrl
+      const { pathname } = parsedUrl
       
       if (pathname.split("/").slice(1).length == 1) {
         if(!pathname.includes(".")) return handle(req, res);
@@ -21,7 +21,6 @@ app.prepare().then(() => {
 
           let stat = fs.statSync(imgPath)
           res.writeHead(200, {
-            'Content-Type': 'audio/mpeg',
             'Content-Length': stat.size
           });
         
