@@ -131,7 +131,7 @@ class DashboardPage extends React.Component {
                             text: status.description
                         })
                     }
-                    this.getFiles(this.state.page)
+                    this.getSurl(this.state.page)
                     DeletionConfirmation.fire({
                         icon: "success",
                         title: "Success!",
