@@ -1,8 +1,8 @@
 import React from 'react';
 import Twemoji from 'react-twemoji';
 import dayjs from 'dayjs';
+import Tippy from '@tippyjs/react';
 
-import '../../../assets/index.scss';
 import check_token from '../../../components/TokenChecker'
 import EmailVerifyNotice from '../../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../../components/DisabledAccNotice'
@@ -76,12 +76,16 @@ class DashboardPage extends React.Component {
                     <td><p>{dayjs.unix(s.timestamp).format('HH:mm:ss DD/MM/YYYY')}</p></td>
                     <td><p>{(s.verified) ? "Yes" : "No"}</p></td>
                     <td className="align_right">
-                        <button className="btn_table btn_verify btn_blu" onClick={() => this.verifyUser(s.userId)}>
-                            <span class="material-icons">check_circle</span>
-                        </button>
-                        <button className="btn_table btn_delete btn_rod" onClick={() => this.disableUser(s.userId)}>
-                            <span class="material-icons">lock</span>
-                        </button>
+                        <Tippy theme="disq" animation="discord-anim" content="Verify user" placement="top">
+                            <button className="btn_table btn_verify btn_blu" onClick={() => this.verifyUser(s.userId)}>
+                                <span class="material-icons">check_circle</span>
+                            </button>
+                        </Tippy>
+                        <Tippy theme="disq" animation="discord-anim" content="Disable user" placement="top">
+                            <button className="btn_table btn_delete btn_rod" onClick={() => this.disableUser(s.userId)}>
+                                <span class="material-icons">lock</span>
+                            </button>
+                        </Tippy>
                     </td>
                 </tr>
             ))
@@ -137,22 +141,12 @@ class DashboardPage extends React.Component {
         return (
             <main>
                 {this.state.sidebar}
-                <div className="disq_content">
+                <div className="files disq_content">
                     <h1 className="welcomeback">Manage Users</h1>
 
                     <h3>Users</h3>
                     <table className="disq_table">
                         <thead>
-                            <tr className="transparent_bg">
-                                <td><button onClick={() => this.paginate(-1)}>Previous</button></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td className="align_right"><button onClick={() => this.paginate(1)}>Next</button></td>
-                            </tr>
                             <tr>
                                 <th>Enabled</th>
                                 <th>Username</th>
@@ -167,19 +161,12 @@ class DashboardPage extends React.Component {
                         <tbody>
                             {this.state.tableData}
                         </tbody>
-                        <tfoot>
-                            <tr className="transparent_bg">
-                                <td><button onClick={() => this.paginate(-1)}>Previous</button></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td className="align_right"><button onClick={() => this.paginate(1)}>Next</button></td>
-                            </tr>
-                        </tfoot>
                     </table>
+                    <div className="pagination">
+                        <button className="btn_small" onClick={() => this.paginate(-1)}>Previous</button>
+                        <p>{this.state.page + 1}/{this.state.maxPages + 1}</p>
+                        <button className="btn_small" onClick={() => this.paginate(1)}>Next</button>
+                    </div>
                 </div>
             </main>
         );

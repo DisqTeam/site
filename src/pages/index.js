@@ -1,11 +1,9 @@
 import React from 'react';
+import Head from '../components/Head';
+import Image from 'next/image';
 import Twemoji from 'react-twemoji';
 import check_token from '../components/TokenChecker'
-import DisqLogo from '../assets/logo512.png'
-import GH_Logo from '../assets/logos/github.png'
-// import DSC_Logo from '../assets/logos/discord.png'
 
-import '../assets/index.scss';
 import config from '../config.json';
 
 class index extends React.Component {
@@ -23,9 +21,11 @@ class index extends React.Component {
         this.setState(st)
     }
 
+
     render() {
         return (
             <Twemoji options={{ className: 'twemoji' }}>
+                    <Head title="Home" description="File upload, short urls and many more."/>
                     <main>
                         <div className="stringy_software_watermark">
                             <p>A <a href="https://stringy.software">Stringy Software</a> project</p>
@@ -94,7 +94,7 @@ class BoxMain extends React.Component {
                         {/* <h1 className="main_text">Disq</h1> */}
                     {/* </div> */}
                         <div className="box_main_content">
-                            <img className="main_logo" src={DisqLogo} alt="Disq"/>
+                            <Image className="main_logo" src="/assets/logo512.png" alt="Disq" width="150" height="150"/>
                             <h3 className="tagline_text">File upload, short urls and many more.</h3>
                             {
                                 (config.comingSoonMode) 
@@ -150,7 +150,9 @@ function Features() {
                 </div>
             </div>
             <div className="features_buttons">
-                <a href="https://github.com/disqTeam"><img className="gh" src={GH_Logo} alt="GitHub"></img></a>
+                <a href="https://github.com/disqTeam">
+                    <Image className="gh" src="/assets/logos/github.png" alt="GitHub" width="50" height="50"/>
+                </a>
             </div>
         </div>
     )

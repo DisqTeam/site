@@ -1,24 +1,40 @@
 const config = require("./src/config.json");
 const path = require("path")
 const fs = require("fs")
-const express = require("express");
+const { parse } = require('url')
+const { createServer } = require('http')
+const next = require('next')
 
-const site = express()
-site.use(express.static("build"))
-site.get('/:file', (req, res, next) => {
-    console.log(`Checking ${path.join(config.imagesFolder, req.params.file)}`)
-    if(fs.existsSync(path.join(config.imagesFolder, req.params.file))) {
-        console.log("Exists")
-        res.sendFile(path.join(config.imagesFolder, req.params.file))
-    } else {
-        console.log("Does not exist")
-        res.sendFile(path.join(__dirname, "build/index.html"))
-    }
-})
-site.get((req, res, next) => {
-    res.sendFile(path.join(__dirname, "build/index.html"))
-})
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev })
+const handle = app.getRequestHandler()
 
-site.listen(8053, () => {
-    console.log(`DisqSite running on port 8053`)
+app.prepare().then(() => {
+    createServer((req, res) => {
+      const parsedUrl = parse(req.url, true)
+      const { pathname, query } = parsedUrl
+      
+      if (pathname.split("/").slice(1).length == 1) {
+        if(!pathname.includes(".")) return handle(req, res);
+        let imgPath = path.join(config.imagesFolder, pathname.slice(1))
+        if(fs.existsSync(imgPath)) { 
+
+          let stat = fs.statSync(imgPath)
+          res.writeHead(200, {
+            'Content-Type': 'audio/mpeg',
+            'Content-Length': stat.size
+          });
+        
+          let read_stream = fs.createReadStream(imgPath);
+          read_stream.pipe(res);
+
+        } 
+        else { handle(req, res) }
+      } else {
+        handle(req, res, parsedUrl)
+      }
+    }).listen(3000, (err) => {
+      if (err) throw err
+      console.log('> Ready on http://localhost:3000')
+    })
 })

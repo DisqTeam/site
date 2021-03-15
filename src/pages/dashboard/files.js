@@ -5,10 +5,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Tippy from '@tippyjs/react';
 
-import '../../assets/index.scss';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/themes/material.css';
-
+import Head from '../../components/Head';
 import check_token from '../../components/TokenChecker'
 import EmailVerifyNotice from '../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../components/DisabledAccNotice'
@@ -35,6 +32,7 @@ class index extends React.Component {
     render() {
         return (
             <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
+                    <Head title="Files" description="Manage your files that you've uploaded to Disq."/>
                     <main>
                         {this.state.pageState}
                     </main>
@@ -201,13 +199,13 @@ class DashboardPage extends React.Component {
                     <h3>Your Files</h3>
 
                     <div className="sideby">
-                        <input placeholder="Filter by filename" onChange={this.onFilterChange}></input>
+                        <input placeholder="🔍 Filter by filename" onChange={this.onFilterChange}></input>
                     </div>
 
                     <table className="disq_table">
                         <thead>
                             <tr>
-                                <th className="icon_display" nowrap></th>
+                                <th className="icon_display" nowrap="true"></th>
                                 <th onClick={() => this.sortBy("name")} className="url_display reactive_th">
                                     URL {(this.state.order === "name") ? (this.state.order_direction === "DESC") ? "▼" : "▲" : "" }
                                 </th>

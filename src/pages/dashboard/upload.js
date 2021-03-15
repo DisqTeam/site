@@ -3,7 +3,7 @@ import Twemoji from 'react-twemoji';
 import Dropzone from 'react-dropzone'
 import axios from 'axios';
 
-import '../../assets/index.scss';
+import Head from '../../components/Head';
 import check_token from '../../components/TokenChecker'
 import EmailVerifyNotice from '../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../components/DisabledAccNotice'
@@ -28,6 +28,7 @@ class index extends React.Component {
     render() {
         return (
             <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
+                    <Head title="Upload" description="Upload files to Disq"/>
                     <main>
                         {this.state.pageState}
                     </main>

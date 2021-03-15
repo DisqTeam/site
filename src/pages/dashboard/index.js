@@ -1,13 +1,12 @@
 import React from 'react';
 import Twemoji from 'react-twemoji';
+import Image from 'next/image';
 
-import '../../assets/index.scss';
+import Head from '../../components/Head';
 import check_token from '../../components/TokenChecker'
 import EmailVerifyNotice from '../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../components/DisabledAccNotice'
 import Sidebar from '../../components/Sidebar'
-
-import ShareXIcon from '../../assets/sharex_white.png'
 import QuickUpload from '../../components/QuickUpload';
 
 class index extends React.Component {
@@ -27,6 +26,7 @@ class index extends React.Component {
     render() {
         return (
             <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
+                    <Head title="Dashboard" description="Manage your Files, Short URLs and settings"/>
                     {this.state.pageState}
             </Twemoji>
         );
@@ -115,7 +115,7 @@ function QuickActions() {
                 </div></a>
                 <a href="/dashboard/sharex"><div className="quick_action">
                     <h3>Configure ShareX</h3>
-                    <img src={ShareXIcon} alt="ShareX"></img>
+                    <Image className="quick_shx" src="/assets/sharex_white.png" alt="ShareX" width="25" height="25"></Image>
                 </div></a>
             </div>
         </div>

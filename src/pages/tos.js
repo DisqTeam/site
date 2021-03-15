@@ -1,8 +1,10 @@
 import React from 'react'
+import Head from '../components/Head'
 
 export default function tos() {
     return (
         <div className="legal_container">
+            <Head title="Terms of Service" description="Read the Disq Terms of Service"/>
             <h2>Terms of Service</h2>
             <p>These Terms of Service govern your use of the website located at <a href="https://disq.me">https://disq.me</a> and any related services provided by Stringy Software. </p>
             <p>By accessing <a href="https://disq.me">https://disq.me</a>, you agree to abide by these Terms of Service and to comply with all applicable laws and regulations. If you do not agree with these Terms of Service, you are prohibited from using or accessing this website or using any other services provided by Stringy Software. </p>

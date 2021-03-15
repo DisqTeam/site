@@ -1,8 +1,8 @@
 import React from 'react';
 import Twemoji from 'react-twemoji';
 import { PieChart } from 'react-minimal-pie-chart';
+import Tippy from '@tippyjs/react';
 
-import '../../../assets/index.scss';
 import check_token from '../../../components/TokenChecker'
 import EmailVerifyNotice from '../../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../../components/DisabledAccNotice'
@@ -113,10 +113,27 @@ class DashboardPage extends React.Component {
                     />
 
                     <h2 className="weak_title">Counts</h2>
-                    <p>
-                        <b>{this.state.stats.counts.userCount}</b> users<br/>
-                        <b>{this.state.stats.counts.fileCount}</b> files<br/>
-                        <b>{this.state.stats.counts.surlCount}</b> short urls<br/>
+                    <p className="admin_users_cont">
+                        <div className="sideby_center sideby">
+                            <Tippy theme="disq" animation="discord-anim" content="Users" placement="top">
+                                <span class="material-icons">person</span>
+                            </Tippy>
+                            <b>{this.state.stats.counts.userCount}</b><br/>
+                        </div>
+
+                        <div className="sideby_center sideby">
+                            <Tippy theme="disq" animation="discord-anim" content="Files" placement="top">
+                                <span class="material-icons">upload_file</span>
+                            </Tippy>
+                            <b>{this.state.stats.counts.fileCount}</b><br/>
+                        </div>
+
+                        <div className="sideby_center sideby">
+                            <Tippy theme="disq" animation="discord-anim" content="Short URLs" placement="top">
+                                <span class="material-icons">link</span>
+                            </Tippy>
+                            <b>{this.state.stats.counts.surlCount}</b><br/>
+                        </div>
                     </p>
 
                 </div>

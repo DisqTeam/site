@@ -13,6 +13,7 @@ src/config.json
 
 # production
 /build
+.next
 
 # misc
 .DS_Store

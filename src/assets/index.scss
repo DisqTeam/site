@@ -140,7 +140,7 @@ button {
 
 input {
     // margin: 4px;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 20px 5px 10px;
     border-radius: 5px;
     border: none;
     cursor: text;
@@ -321,7 +321,7 @@ $sidebar-width: 270px;
 $quick_action_size: 2vw;
 
 .quick_action span{ font-size: $quick_action_size; margin-left: 10px; }
-.quick_action img{ width: $quick_action_size; margin-left: 10px; }
+.quick_action img, .quick_shx { margin-left: 10px !important; } //width: $quick_action_size;
 .quick_action h3 { margin-left: 10px; }
 .quick_actions a{
     text-decoration: none;
@@ -1035,4 +1035,12 @@ input:checked + .slider:before {
 
 .switch_subtitle {
     margin: 10px 0px 10px 10px;
+}
+
+/* admin */
+.admin_users_cont {
+    font-size: 25px;
+}
+.admin_users_cont b {
+    padding-right: 2px;
 }

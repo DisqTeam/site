@@ -1,8 +1,6 @@
 import React from 'react';
 import Twemoji from 'react-twemoji';
 
-import '../assets/index.scss';
-
 class index extends React.Component {
     constructor(props) {
         super(props);

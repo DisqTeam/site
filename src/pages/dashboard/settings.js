@@ -1,7 +1,7 @@
 import React from 'react';
 import Twemoji from 'react-twemoji';
 
-import '../../assets/index.scss';
+import Head from '../../components/Head';
 import check_token from '../../components/TokenChecker'
 import EmailVerifyNotice from '../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../components/DisabledAccNotice'
@@ -18,6 +18,7 @@ class index extends React.Component {
     render() {
         return (
             <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
+                    <Head title="Settings" description="Configure your Disq account, and more"/>
                     <main>
                         {this.state.pageState}
                     </main>
@@ -121,8 +122,8 @@ class DashboardPage extends React.Component {
                         Your token can be used to authenticate with the Disq API. <b>Do NOT share it!</b><br/>
                         <span className="shx_warning">Warning! Regenerating your token will invalidate all current SXCUs and log out every device.</span>
                     </h2>
-                    <input className="settings_long settings_blur" value={localStorage.token}></input>
-                    <button onClick={this.tokenRegen} className="btn_porp">Regenerate</button>
+                    <input className="settings_long settings_blur" value={(typeof window !== 'undefined') ? localStorage.token : "Woops.."}></input>
+                    <button onClick={this.tokenRegen} className="btn_small btn_porp">Regenerate</button>
 
                     <h2>Misc</h2>
                     <p>These settings will save in your browser.</p>

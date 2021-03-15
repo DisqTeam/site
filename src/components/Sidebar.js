@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import Image from 'next/image';
 import Tippy from '@tippyjs/react';
-import ShareXIcon from '../assets/sharex_white.png'
 
 class Sidebar extends Component {
     constructor(props) {
@@ -53,7 +53,7 @@ class Sidebar extends Component {
                 <div className="sidebar_sideby">
                     <Tippy theme="disq" animation="discord-anim" content="ShareX" placement="top">
                         <a className="sidebar_option" href="/dashboard/sharex">
-                            <img className="shx_icon" src={ShareXIcon} alt="ShareX"></img>
+                            <Image className="shx_icon" src="/assets/sharex_white.png" alt="ShareX" width="25" height="25"/>
                         </a>
                     </Tippy>
                     <Tippy theme="disq" animation="discord-anim" content="Settings" placement="top">

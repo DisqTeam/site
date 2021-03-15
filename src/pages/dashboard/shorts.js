@@ -4,7 +4,7 @@ import Tippy from '@tippyjs/react';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-import '../../assets/index.scss';
+import Head from '../../components/Head';
 import check_token from '../../components/TokenChecker'
 import EmailVerifyNotice from '../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../components/DisabledAccNotice'
@@ -30,6 +30,7 @@ class index extends React.Component {
     render() {
         return (
             <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
+                    <Head title="Short URLs" description="Create and manage your Short URLS"/>
                     <main>
                         {this.state.pageState}
                     </main>
@@ -182,7 +183,7 @@ class DashboardPage extends React.Component {
 
                     <h3>Create Short URL</h3>
                     <input onChange={(e) => this.setState({newUrl: e.target.value})} className="surl_create_input" placeholder="https://bruh.moment" />
-                    <button onClick={this.createSurl} className="btn_porp">Create</button>
+                    <button onClick={this.createSurl} className="btn_small btn_porp">Create</button>
                     <p className="login_error">{this.state.errorText}</p>
 
                     <h3>Your Short URLs</h3>

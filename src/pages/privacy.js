@@ -199,7 +199,7 @@ export default function privacy() {
       <p>
         Edward Taylor
         <br />
-        stringy (at) disq (dot) me{" "}
+        souraddress (at) gmail (dot) com{" "}
       </p>
     </div>
   );

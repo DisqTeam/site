@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Spinner from "react-spinkit";
 import VerifyEmail from '../../components/EmailVerifyNotice';
 
 import config from '../../config.json';
@@ -43,7 +42,6 @@ export default function AuthCallback() {
     return (
         <div className="supercenter">
             <div className="load">
-                <Spinner className="spinner" name="folding-cube" fadeIn="none" color="white"/>
                 <h1>{text}</h1>
             </div>
             {verify}
