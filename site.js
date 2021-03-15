@@ -1,13 +1,16 @@
 const config = require("./src/config.json");
 const path = require("path")
 const fs = require("fs")
+const mmm = require('mmmagic').Magic;
 const { parse } = require('url')
 const { createServer } = require('http')
 const next = require('next')
 
+const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev })
 const handle = app.getRequestHandler()
+
 
 app.prepare().then(() => {
     createServer((req, res) => {
@@ -18,15 +21,18 @@ app.prepare().then(() => {
         if(!pathname.includes(".")) return handle(req, res);
         let imgPath = path.join(config.imagesFolder, pathname.slice(1))
         if(fs.existsSync(imgPath)) { 
-
-          let stat = fs.statSync(imgPath)
-          res.writeHead(200, {
-            'Content-Length': stat.size
+          magic.detectFile(imgPath, function(err, mime) {
+            if (err) throw err;
+            let stat = fs.statSync(imgPath)
+            
+            res.writeHead(200, {
+              'Content-Type': mime,
+              'Content-Length': stat.size
+            });
+          
+            let read_stream = fs.createReadStream(imgPath);
+            read_stream.pipe(res);
           });
-        
-          let read_stream = fs.createReadStream(imgPath);
-          read_stream.pipe(res);
-
         } 
         else { handle(req, res) }
       } else {
