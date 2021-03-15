@@ -2,6 +2,7 @@
 
 # stuff
 src/config.json
+ecosystem.config.js
 
 # dependencies
 /node_modules
