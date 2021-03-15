@@ -1,12 +1,12 @@
 const config = require("./src/config.json");
 const path = require("path")
 const fs = require("fs")
-const mmm = require('mmmagic').Magic;
+const mmm = require('mmmagic'), Magic = mmm.Magic;
 const { parse } = require('url')
 const { createServer } = require('http')
 const next = require('next')
 
-const magic = new mmm.Magic(mmm.MAGIC_MIME_TYPE);
+const magic = new Magic(mmm.MAGIC_MIME_TYPE);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev })
 const handle = app.getRequestHandler()
