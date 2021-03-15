@@ -11,8 +11,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="theme-color" content="#6812ca" key="colortheme"/>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,}500;0,600;1,400;1,500;1,600&display=swap" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         </Head>
         <body>
