@@ -53,7 +53,7 @@ class Sidebar extends Component {
                 <div className="sidebar_sideby">
                     <Tippy theme="disq" animation="discord-anim" content="ShareX" placement="top">
                         <a className="sidebar_option" href="/dashboard/sharex">
-                            <Image className="shx_icon" src="/assets/sharex_white.png" alt="ShareX" width="25" height="25"/>
+                            <img className="shx_icon" src="/assets/sharex_white.png" alt="ShareX"/>
                         </a>
                     </Tippy>
                     <Tippy theme="disq" animation="discord-anim" content="Settings" placement="top">

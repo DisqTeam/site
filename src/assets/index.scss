@@ -218,7 +218,7 @@ $sidebar-width: 270px;
 .sidebar {
     height: 100%;
     width: $sidebar-width;
-    position: fixed;
+    position: absolute;
     z-index: 10;
     top: 0;
     left: 0;
@@ -283,7 +283,7 @@ $sidebar-width: 270px;
 }
 
 .disq_content {
-    margin-left: $sidebar-width + 25px;
+    margin-left: 25px + $sidebar-width;
 }
 
 .welcomeback {
@@ -321,7 +321,7 @@ $sidebar-width: 270px;
 $quick_action_size: 2vw;
 
 .quick_action span{ font-size: $quick_action_size; margin-left: 10px; }
-.quick_action img, .quick_shx { margin-left: 10px !important; } //width: $quick_action_size;
+.quick_action img, .quick_shx { margin-left: 10px; width: $quick_action_size; }
 .quick_action h3 { margin-left: 10px; }
 .quick_actions a{
     text-decoration: none;
@@ -1043,4 +1043,9 @@ input:checked + .slider:before {
 }
 .admin_users_cont b {
     padding-right: 2px;
+}
+
+/* main container */
+.disq_main {
+    display: flex;
 }

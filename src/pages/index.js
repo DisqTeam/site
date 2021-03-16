@@ -94,7 +94,7 @@ class BoxMain extends React.Component {
                         {/* <h1 className="main_text">Disq</h1> */}
                     {/* </div> */}
                         <div className="box_main_content">
-                            <Image className="main_logo" src="/assets/logo512.png" alt="Disq" width="150" height="150"/>
+                            <img className="main_logo" src="/assets/logo512.png" alt="Disq"/>
                             <h3 className="tagline_text">File upload, short urls and many more.</h3>
                             {
                                 (config.comingSoonMode) 
@@ -151,7 +151,7 @@ function Features() {
             </div>
             <div className="features_buttons">
                 <a href="https://github.com/disqTeam">
-                    <Image className="gh" src="/assets/logos/github.png" alt="GitHub" width="50" height="50"/>
+                    <img className="gh" src="/assets/logos/github.png" alt="GitHub"/>
                 </a>
             </div>
         </div>

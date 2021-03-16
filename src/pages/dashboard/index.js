@@ -83,7 +83,7 @@ class DashboardPage extends React.Component {
 
     render() {
         return (
-            <main>
+            <main className="disq_main">
                 {this.state.sidebar}
                 <div className="disq_content">
                     <h1 className="welcomeback">{this.state.greeting}</h1>
@@ -115,7 +115,7 @@ function QuickActions() {
                 </div></a>
                 <a href="/dashboard/sharex"><div className="quick_action">
                     <h3>Configure ShareX</h3>
-                    <Image className="quick_shx" src="/assets/sharex_white.png" alt="ShareX" width="25" height="25"></Image>
+                    <img className="quick_shx" src="/assets/sharex_white.png" alt="ShareX"/>
                 </div></a>
             </div>
         </div>

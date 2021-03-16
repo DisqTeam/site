@@ -3,8 +3,15 @@
     <p>
     + Redesigned landing page with quick upload<br/>
     + New greeting messages<br/>
+    + Tooltips everywhere!<br/>
+    + Server Side Rendering for Short URLs (NextJS)<br/>
+    + Social media embeds when linking Disq<br/>
+    + Redesigned Files and Short URL pages
     <br/>
     = Made loading pages smoother in the Files manager and Short URL manager.<br/>
+    <br/>
+    - Cringed at .php, .cpp, .c and .h files uploaded<br/>
+    - Removed easter egg with Request Verification in the settings page. It'll be back in a newer update!<br/>
     </p>
 </div>
 

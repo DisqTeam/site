@@ -117,9 +117,9 @@ class DashboardPage extends React.Component {
             denyButtonColor: '#9954e9'
         }).then(async (input) => {
             if(input.isConfirmed){
-                fetch(`${config.endpoint}/uploads/delete`, {
+                fetch(`${config.endpoint}/surl/delete`, {
                     method: "POST",
-                    body: JSON.stringify({ filename: id }),
+                    body: JSON.stringify({ shortCode: id }),
                     headers: { 'token': localStorage.token, 'Content-Type': 'application/json' }
                 })
                 .then(res => res.json())
@@ -141,22 +141,7 @@ class DashboardPage extends React.Component {
             }
         })
     }
-
-
-    actuallyDeleteSurl = async (id) => {
-        fetch(`${config.endpoint}/surl/delete`, {
-            method: "POST",
-            body: JSON.stringify({ shortCode: id }),
-            headers: { 'token': localStorage.token, 'Content-Type': 'application/json' }
-        })
-        .then(res => res.json())
-        .then(surl => {
-            if(!surl.success) return this.setState({ errorText: surl.description })
-            this.getSurl(this.state.page)
-            this.setState({ errorText: "Deleted!" })
-        })
-    }
-
+    
     paginate = async (am) => {
         if(this.state.page + am < 0) return;
         this.setState({page: this.state.page + am})
