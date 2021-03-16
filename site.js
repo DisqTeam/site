@@ -8,7 +8,7 @@ const next = require('next')
 
 const magic = new Magic(mmm.MAGIC_MIME_TYPE);
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev })
+const app = next({ dev: false })
 const handle = app.getRequestHandler()
 
 
