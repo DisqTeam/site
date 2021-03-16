@@ -34,7 +34,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "git pull && yarn build && pm2 restart disq_site"
   },
   "eslintConfig": {
     "extends": "react-app"
