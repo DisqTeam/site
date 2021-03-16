@@ -13,7 +13,7 @@ export default function Head(props) {
             <meta name="twitter:creator" content="etstringy" key="twhandle" />
 
             <meta property="og:url" content={"https://disq.me" + router.pathname} key="ogurl" />
-            <meta property="og:image" content="/static/assets/logo192.png" key="ogimage" />
+            <meta property="og:image" content="https://disq.me/5bvAt.png" key="ogimage" />
             <meta property="og:site_name" content="Disq" key="ogsitename" />
             <meta property="og:title" content={`Disq - ${props.title}`} key="ogtitle" />
             <meta property="og:description" content={props.description} key="ogdesc" />
