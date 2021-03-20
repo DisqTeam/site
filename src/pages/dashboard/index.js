@@ -72,8 +72,7 @@ class DashboardPage extends React.Component {
             "What will it be today then, {{NAME}}?",
             "*pats {{NAME}}*",
             "Konnichiwa, {{NAME}}-chan!",
-            "Welcome back to Disq, {{NAME}}!",
-            "This isn't e621, {{NAME}}.."
+            "Welcome back to Disq, {{NAME}}!"
         ]
         let num = Math.floor(Math.random() * greetings.length)
         let greeting = greetings[num].replace("{{NAME}}", this.state.user.username.split("#")[0])
