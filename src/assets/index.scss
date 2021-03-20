@@ -310,7 +310,9 @@ $sidebar-mode: $sidebar-width-small;
     color: #fff;
     background-color: $brand_color_3;
     // transition: 0.2s;
+}
 
+.sidebar_big .sidebar_option {
     animation: fadeIn ease 0.3s;
 }
 
