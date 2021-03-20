@@ -18,9 +18,24 @@
     }
 }
 
-.tippy-box[data-theme~='disq'][data-placement^='top'] > .tippy-arrow::before {
+.tippy-box[data-theme~='disq'][data-placement^="top"]  > .tippy-arrow::before {
 	border-top-color: black;
-	filter: drop-shadow(0 2px 16px 0 rgba(0, 0, 0, 0.5));
+	// filter: drop-shadow(0 2px 16px 0 rgba(0, 0, 0, 0.5));
+}
+
+.tippy-box[data-placement^="right"][data-animation="discord-anim"] {
+    transform-origin: center !important;
+    &[data-state="hidden"] {
+        opacity: 0;
+        transform: scale(0.9) translateX(11px);
+    }
+    &[data-state="visible"] {
+        transform: scale(1) translateX(11px);
+    }
+}
+
+.tippy-arrow {
+	color: #000 !important;
 }
 
 .tippy-box[data-theme~='disq'] .tippy-content {

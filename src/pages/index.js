@@ -95,14 +95,16 @@ class BoxMain extends React.Component {
                     {/* </div> */}
                         <div className="box_main_content">
                             <img className="main_logo" src="/assets/logo512.png" alt="Disq"/>
-                            <h3 className="tagline_text">File upload, short urls and many more.</h3>
-                            {
-                                (config.comingSoonMode) 
-                                ? <p>Coming soon.</p>
-                                : <div className="main_btn_container">
-                                    <button onClick={this.login} className="btn_porp">{(this.state.loggedIn) ? "Dashboard" : "Login"}</button>
-                                </div>
-                            }
+                            <div className="box_main_text">
+                                <h3 className="tagline_text">File upload, short urls and many more.</h3>
+                                {
+                                    (config.comingSoonMode) 
+                                    ? <p>Coming soon.</p>
+                                    : <div className="main_btn_container">
+                                        <button onClick={this.login} className="btn_porp">{(this.state.loggedIn) ? "Dashboard" : "Login"}</button>
+                                    </div>
+                                }
+                            </div>
                         </div>
                         <p className="legal"> 
                             By logging in, you agree to <br/>

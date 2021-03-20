@@ -115,7 +115,7 @@ function QuickActions() {
                 </div></a>
                 <a href="/dashboard/sharex"><div className="quick_action">
                     <h3>Configure ShareX</h3>
-                    <img className="quick_shx" src="/assets/sharex_white.png" alt="ShareX"/>
+                    <span className="material-icons">screenshot</span>
                 </div></a>
             </div>
         </div>

@@ -48,7 +48,10 @@ class DashboardPage extends React.Component {
             errorText: "",
             page: 0,
             username: "",
-            password: ""
+            password: "",
+            switches: {
+                censor: false
+            }
         }
         this.props.SSR.bind(this);
         this.migrate.bind(this);
@@ -62,6 +65,8 @@ class DashboardPage extends React.Component {
         if(!userInfo.success) return window.location.href = '/'
         this.setState({user: userInfo.user})
         this.setState({sidebar: <Sidebar user={this.state.user}/>})
+
+        if(localStorage.censor == "true") this.setState({switches: {censor: true}})
     }
 
     migrate = () => {
@@ -96,6 +101,11 @@ class DashboardPage extends React.Component {
         })
     }
 
+    setStorage = (key, e) => {
+        localStorage.setItem(key, (e.target.value) ? "true" : "false")
+        console.log(localStorage.censor)
+    }
+
     render() {
         return (
             <main>
@@ -125,15 +135,15 @@ class DashboardPage extends React.Component {
                     <input className="settings_long settings_blur" value={(typeof window !== 'undefined') ? localStorage.token : "Woops.."}></input>
                     <button onClick={this.tokenRegen} className="btn_small btn_porp">Regenerate</button>
 
-                    <h2>Misc</h2>
+                    {/* <h2>Misc</h2>
                     <p>These settings will save in your browser.</p>
                     <div className="sideby_center sideby">
                         <label class="switch">
-                            <input type="checkbox"/>
+                            <input type="checkbox" defaultChecked={this.state.switches.censor} onChange={(e) => this.setStorage("censor", e)}/>
                             <span class="slider round"></span>
                         </label>
                         <p className="switch_subtitle">Censor links</p>
-                    </div>
+                    </div> */}
 
                     <h2>Legacy Account Migration</h2>
                     <h2 className="shx_desc">

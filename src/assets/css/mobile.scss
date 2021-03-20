@@ -1,0 +1,82 @@
+@import 'colors.scss';
+
+/* Frontpage responsive */
+
+@media only screen and (max-width: 1000px) {
+    .main_box{
+        background-color: $brand_color_2;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .box_features {
+        width: 350px;
+        background-color: #10141b;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    
+        // display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        display: none !important;
+    }
+
+    .box_main {
+        width: 95vw;
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .box_main_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .box_main_text{
+        font-size: 15px;
+        // text-align: right;
+        margin-left: 10px;
+    }
+
+    .main_logo {
+        width: 10vh;
+        animation: speeen 2s ease;
+        // display: none;
+    }
+
+    .features_title {
+        margin-top: 50px;
+    }
+}
+
+/* MAIN DASHBOARD */
+@media only screen and (max-width: 860px) {
+    .land_sideby {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .quick_actions{
+        display: flex;
+        flex-direction: column;
+        font-family: Roboto;
+        width: 95%;
+    }
+    
+    .land_cl {
+        margin-left: 5px;
+        width: 95%;
+    }
+    
+}
