@@ -1,3 +1,22 @@
+<h4>v1.4.2</h4>
+<div>
+    <p>
+    + Collapsable sidebar<br/>
+    + Starting to optimise a few pages for mobile<br/>
+    + Redesigned Files and Short URL pages
+    <br/>
+    - Removed Censor links toggle<br/>
+    </p>
+</div>
+
+<h4>v1.4.1</h4>
+<div>
+    <p>
+    = Disq should now run faster as it turns out i was not building for production. my bad!
+    </p>
+</div>
+
+
 <h4>v1.4.0</h4>
 <div>
     <p>
