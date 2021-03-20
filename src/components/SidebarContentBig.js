@@ -3,7 +3,7 @@ import Tippy from '@tippyjs/react';
 
 export default function SidebarContentBig(props) {
     return (
-        <div className="sidebar_big">
+        <div className="sidebar_display_big">
             <h6 className="sidebar_break">Tools</h6>
             <a className="sidebar_option" href="/dashboard/upload">Upload</a>
             <a className="sidebar_option" href="/dashboard/files">Files</a>
