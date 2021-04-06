@@ -107,6 +107,8 @@ class DashboardPage extends React.Component {
                             <option value="https://disq.me">disq.me</option>
                             <option value="https://i.kindas.us">i.kindas.us</option>
                             <option value="https://files.stringy.software">files.stringy.software</option>
+                            <option value="https://pissbaby.tech">pissbaby.tech</option>
+                            <option value="https://premid.fail">premid.fail</option>
                         </select>
                     </div>
                     <button onClick={this.createConfig} className="btn_porp">Download SXCU</button>

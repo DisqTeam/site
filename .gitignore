@@ -3,6 +3,7 @@
 # stuff
 src/config.json
 ecosystem.config.js
+dev.bat
 
 # dependencies
 /node_modules

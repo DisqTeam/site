@@ -1,0 +1,47 @@
+@import 'colors.scss';
+
+.more_container {
+    display: flex;
+    flex-wrap: wrap;
+    
+    justify-content: center;
+    align-content: center;
+
+    margin-left: -25px;
+}
+
+.more_service {
+    border-radius: 15px;
+
+    margin: 5px;
+    background-color: $brand_color_2;
+    width: 200px;
+    height: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    transition: all .2s;
+    color: #fff;
+}
+
+.more_service:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: lighten($brand_color_2, 10%);
+}
+
+.more_service h1 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.more_service span {
+    font-size: 5vw;
+}
+
+.more a {
+    text-decoration: none;
+}

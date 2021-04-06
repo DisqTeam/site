@@ -151,6 +151,23 @@ input {
     color: #fff;
 }
 
+textarea {
+    // margin: 4px;
+    padding: 5px 20px 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: text;
+
+    background-color: rgb(38, 48, 77);
+    background-color: rgb(38, 48, 77);
+
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+}
+
+
 .stringy_software_watermark{
     position: absolute;
     bottom: 5px;
@@ -344,6 +361,28 @@ $sidebar-mode: $sidebar-width-small;
     animation: fadeIn ease 0.3s;
 }
 
+.sidebar_state_small_buttons .material-icons {
+    font-size: 24px;
+}
+
+.sidebar_state_small_buttons .sidebar_option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+
+.badge {
+    background-color: $disq_purple;
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 20px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
 .menu_btn {
     user-select: none;
     line-height: 35px;
@@ -526,7 +565,7 @@ $quick_action_size: 2vw;
 }
 
 .upload_icon {
-    font-size: 10vw;
+    font-size: 5vw;
 }
 
 .user_name {
@@ -1148,6 +1187,10 @@ input:checked + .slider:before {
     margin: 10px 0px 10px 10px;
 }
 
+.switch_subtitle_r {
+    margin: 10px 10px 10px 0px;
+}
+
 /* admin */
 .admin_users_cont {
     font-size: 25px;
@@ -1159,4 +1202,69 @@ input:checked + .slider:before {
 /* main container */
 .disq_main {
     display: flex;
+}
+
+/* plus */
+.plus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.plus_text {
+    font-weight: 900;
+    margin: 15px;
+    font-size: 75px;
+    letter-spacing: 5px;
+    color: $brand_color_3;
+    -webkit-text-stroke: rgba(187,43,230,1) 2px;
+}
+
+.plus-perk {
+    text-align: center;
+    background-color: rgb(172, 107, 233);
+    padding: 15px;
+    width: 20vw;
+    margin: 10px;
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.plus-perk:hover {
+    transform: scale(1.05);
+}
+
+.plus-perk h1 {
+    font-weight: 900;
+    font-size: 2vw;
+}
+
+.plus_perks_container {
+    display: flex;
+}
+
+.plus_stripe {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    // justify-content: center;
+
+    // background-color: $brand_color_2;
+    // width: 50%;
+
+    margin-bottom: 100px;
+}
+
+.plus_stripe_badge {
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
+.marginbottom {
+    margin-bottom: 50px;
 }

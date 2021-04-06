@@ -4,10 +4,15 @@ import Tippy from '@tippyjs/react';
 export default function SidebarContentBig(props) {
     return (
         <div className="sidebar_display_big">
+            <a className="sidebar_option" href="/dashboard">Home</a>
             <h6 className="sidebar_break">Tools</h6>
             <a className="sidebar_option" href="/dashboard/upload">Upload</a>
             <a className="sidebar_option" href="/dashboard/files">Files</a>
             <a className="sidebar_option" href="/dashboard/shorts">Short URLs</a>
+            <a className="sidebar_option" href="/dashboard/more">
+                More
+                <span className="badge">New</span>
+            </a>
 
             <h6 className="sidebar_break">Account</h6>
             {/* <a className="sidebar_option" href="/dashboard/sharex">ShareX</a> */}

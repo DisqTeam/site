@@ -3,5 +3,6 @@
     "endpoint": "http://localhost:8415",
     "imagesFolder": "D:\\Documents\\Programming\\Node.js\\Disq\\DisqAPI\\files",
     "reCaptchaKey": "6Lfl9tsZAAAAAK5Z2XyEYRLbWtRAzjd2LXahOIg1",
-    "discordClient": "797143804431564821"
+    "discordClient": "797143804431564821",
+    "stripePublic": "pk_test_jdzpSaC9DtEHAVlYSGQ8cMIg00AOaEI7gx"
 }

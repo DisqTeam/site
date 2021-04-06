@@ -3,7 +3,13 @@ import Tippy from '@tippyjs/react';
 
 export default function SidebarContentBig(props) {
     return (
-        <div>
+        <div className="sidebar_state_small_buttons">
+            <Tippy theme="disq" animation="discord-anim" content="Home" placement="right">
+                <a className="sidebar_option" href="/dashboard">
+                    <span className="material-icons">house</span>
+                </a>
+            </Tippy>
+
             <h6 className="sidebar_break">Tools</h6>
 
             <Tippy theme="disq" animation="discord-anim" content="Upload" placement="right">
@@ -21,6 +27,12 @@ export default function SidebarContentBig(props) {
             <Tippy theme="disq" animation="discord-anim" content="Short URLs" placement="right">
                 <a className="sidebar_option" href="/dashboard/shorts">
                     <span className="material-icons">link</span>
+                </a>
+            </Tippy>
+
+            <Tippy theme="disq" animation="discord-anim" content="More" placement="right">
+                <a className="sidebar_option" href="/dashboard/more">
+                    <span className="material-icons">more_horiz</span>
                 </a>
             </Tippy>
 

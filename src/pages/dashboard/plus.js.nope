@@ -1,0 +1,76 @@
+import React from 'react';
+import Twemoji from 'react-twemoji';
+
+import Head from '../../components/Head';
+import check_token from '../../components/TokenChecker'
+import EmailVerifyNotice from '../../components/EmailVerifyNotice'
+import DisabledAccNotice from '../../components/DisabledAccNotice'
+import Sidebar from '../../components/Sidebar'
+import PlusUnsub from '../../components/PlusUnsub';
+
+class index extends React.Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            pageState: <DashboardPage SSR={this.setStateRemote}/>
+        }
+        this.setStateRemote.bind(this);
+    }
+
+    setStateRemote = (st) => {
+        this.setState(st)
+    }
+
+    render() {
+        return (
+            <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
+                    <Head title="Plus" description="Support Disq and get some cool perks!"/>
+                    <main>
+                        {this.state.pageState}
+                    </main>
+            </Twemoji>
+        );
+    }
+}
+
+class DashboardPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user: {
+                username: "Loading..",
+                privileges: {
+                    administrator: false,
+                    verified: false
+                }
+            },
+            sidebar: ""
+        }
+        this.props.SSR.bind(this);
+    }
+
+    async componentDidMount() {
+        let userInfo = await check_token()
+        if(userInfo.emailVerify) return this.props.SSR({ "pageState": <EmailVerifyNotice email={userInfo.email}/> })
+        if(userInfo.accountDisabled) return this.props.SSR({ "pageState": <DisabledAccNotice/> })
+        if(!userInfo.success) return window.location.href = '/'
+        this.setState({user: userInfo.user})
+        this.setState({sidebar: <Sidebar user={this.state.user}/>})
+    }
+
+    render() {
+        return (
+            <main>
+                {this.state.sidebar}
+                <div className="plus disq_content">
+                    <h1 className="plus_text">PLUS</h1>
+                    <PlusUnsub/>
+                </div>
+            </main>
+        );
+    }
+}
+
+export default index;

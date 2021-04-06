@@ -5,7 +5,9 @@ import '../assets/index.scss';
 import '../assets/css/mobile.scss';
 import '../assets/css/sidebar.scss';
 import '../assets/css/tooltip.scss';
+import '../assets/css/profile.scss'
 import '../assets/css/404.scss'
+import '../assets/css/more.scss'
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/material.css';

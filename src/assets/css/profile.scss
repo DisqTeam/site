@@ -1,0 +1,197 @@
+@import 'colors.scss';
+
+.profile_container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_header {
+    width: 100%;
+    height: 300px;
+
+    background-position: center;
+    background-size: cover;
+    border: #fff 5px;
+    // filter: blur(5px);
+}
+
+.profile_pfp {
+    background-color: $brand_color_1;
+
+    height: 128px;
+    width: 128px;
+    
+    border-radius: 1000px;
+    border-color: $brand_color_3;
+    border-width: 4px;
+    border-style: solid;
+
+    margin-top: -65px;
+
+    // margin-bottom: 0;
+}
+
+.profile_username {
+    margin-top: 10px;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.profile_tick {
+    vertical-align: middle;
+    margin-left: 15px;
+    font-size: 50px;
+}
+
+.profile_bio {
+    text-align: center;
+    word-wrap: break-word;
+    width: 40%;
+    min-width: 250px;
+}
+
+.profile_links {
+    width: 30%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    padding-bottom: 50px;
+}
+
+.profile_tag {
+    margin-top: -5px;
+    color: rgb(145, 145, 145);
+}
+
+.profile_btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background-color: $brand_color_2;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+
+    min-width: 200px;
+    width: 300px;
+
+    transition: background-color 0.1s ease;
+    animation: slideInProfile ease 0.8s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideInProfile {
+    0% {
+        opacity: 0;
+        transform: translateX(-150px);
+    }
+    25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.profile_btn:hover {
+    cursor: pointer;
+    background-color: lighten($brand_color_2, 10%);
+}
+
+.profile_btn h4 {
+    margin: 0;
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.profile_btn_icon {
+    margin-right: 5px;
+}
+
+.profile_editor_bio {
+    align-self: center;
+    padding: 15px;
+    margin: 0;
+    width: 95%;
+    height: 90px;
+
+    resize: none;
+}
+
+.profile_editor_banner_img {
+    align-self: center;
+    padding: 15px;
+    margin: 0;
+    width: 95%;
+    height: 120px;
+    border-radius: 15px;
+
+    background-position: center;
+    background-size: cover;
+    background-color: $watermark_color;
+}
+
+.profile_editor_box {
+    display: flex;
+    flex-direction: column;
+    
+    background-color: $brand_color_3;
+    width: 35vw;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px;
+}
+
+.profile_editor_title {
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.profile_editor_box_big {
+    width: calc(35vw * 2 + 15px * 2);
+}
+
+.profile_banner_upload {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.profile_editor_customurl {
+    width: 85px;
+}
+
+.profile_editor_customurl_beforeurl {
+    color: lighten($disq_purple, 20%);
+}
+
+.profile_editor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-left: -25px;
+}
+
+.profile_editor_table {
+    width: 100%;
+    align-self: center;
+}
+
+.profile_urlbox {
+    width: 300px;
+}
+
+.profile_banner_longboi {
+    padding-left: 0;
+    width: 200px;
+    background-color: transparent;
+}
