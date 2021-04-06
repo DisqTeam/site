@@ -19,7 +19,6 @@ export default function UserProfile({ error, bio, username, pfp, banner, links, 
     if(error) {
         return(<NotExist/>)
     } else {
-        console.log({error, bio, username, pfp, banner, links, flags, code})
         return(<ActualUserProfile bio={bio} username={username} pfp={pfp} banner={banner} links={links} flags={flags} code={code}/>)
     }
 }
