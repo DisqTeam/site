@@ -16,7 +16,7 @@ export default function UserProfile({ bio, username, pfp, banner, links, flags, 
     return (
         <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
             <div className="profile_container">
-                <HeadProfile title={username + " - " + `@${url}`} description={bio}/>
+                <HeadProfile title={username + " - " + `@${url}`} description={bio} image={pfp}/>
 
                     <div className="profile_header" style={{backgroundImage: `url(${config.endpoint}/banners/${banner})`}}></div>
                     <img className="profile_pfp" src={pfp}></img>
