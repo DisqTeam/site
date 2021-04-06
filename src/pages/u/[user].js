@@ -66,7 +66,7 @@ UserProfile.getInitialProps = async (ctx) => {
 
 function ProfileButton(props, index) {
     return (
-        <a href={props.url} target="_blank" rel="noreferrer">
+        <a className="nolinkstyle" href={props.url} target="_blank" rel="noreferrer">
             <div className="profile_btn" style={{animationDelay: `${0.2 * index}s`, opacity: 0}}>
                 <FontAwesomeIcon className="profile_btn_icon" size="2x" icon={ProfileLinkIcon(props.url)}/>
                 <h4>{props.username}</h4> 
