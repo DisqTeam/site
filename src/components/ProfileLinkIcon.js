@@ -1,11 +1,15 @@
 export default (url) => {
-    let u = new URL(url)
+    const u = new URL(url)
+    const actual_url = u.hostname.replace("www.", "")
 
-    switch(u.hostname){
+    switch(actual_url){
         case "discord.gg":
         case "discord.com":
         case "discordapp.com":
             return ["fab", "discord"];
+
+        case "twitch.tv":
+            return ["fab", "twitch"];
 
         case "github.com":
             return ["fab", "github"];
@@ -45,10 +49,10 @@ export default (url) => {
         case "tiktok.com":
         case "tiktok.org":
         case "tiktokv.com":
-            return ["fab", "itch-io"];
+            return ["fab", "tiktok"];
         
 
         default:
-            return ["fas", "globe"];
+            return ["fas", "link"];
     }
 }

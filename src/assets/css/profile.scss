@@ -36,14 +36,16 @@
 
 .profile_username {
     margin-top: 10px;
-    font-size: 60px;
+    font-size: calc(25px + 3vw);
     margin-bottom: 10px;
 }
 
 .profile_tick {
     vertical-align: middle;
-    margin-left: 15px;
-    font-size: 50px;
+    margin-left: 1vw;
+    font-size: calc(20px + 2vw);
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .profile_bio {

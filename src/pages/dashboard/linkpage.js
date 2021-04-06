@@ -142,13 +142,15 @@ class DashboardPage extends React.Component {
 
     // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
     validURL(str) {
-        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-        return !!pattern.test(str);
+        let url;
+  
+        try {
+          url = new URL(str);
+        } catch (_) {
+          return false;  
+        }
+      
+        return url;
     }
 
     saveChanges = () => {
@@ -277,7 +279,7 @@ class DashboardPage extends React.Component {
                                     ></input>
                                 </div>
 
-                                <p>Bio ({(this.state.profileData.bio.length > 0) ? 240 - this.state.profileData.bio.length : "0"} characters left)</p>
+                                <p>Bio ({(this.state.profileData.bio.length >= 0) ? 240 - this.state.profileData.bio.length : "0"} characters left)</p>
                                 <textarea 
                                     className="profile_editor_bio"
                                     placeholder={"I'm " + this.state.user.username.split("#")[0] + " and I like to do stuff."}
