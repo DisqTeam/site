@@ -52,7 +52,6 @@ UserProfile.propTypes = {
 UserProfile.getInitialProps = async (ctx) => {
     let { user } = ctx.query
     let res = await axios.get(`${config.endpoint}/profile/${user}`)
-    console.log(res)
     return { 
         bio: res.data.profile.bio, 
         username: res.data.profile.username,
@@ -67,10 +66,12 @@ UserProfile.getInitialProps = async (ctx) => {
 
 function ProfileButton(props, index) {
     return (
-        <div className="profile_btn" style={{animationDelay: `${0.2 * index}s`, opacity: 0}}>
-            <FontAwesomeIcon className="profile_btn_icon" size="2x" icon={ProfileLinkIcon(props.url)}/>
-            <h4>{props.username}</h4> 
-        </div>
+        <a href={props.url} target="_blank" rel="noreferrer">
+            <div className="profile_btn" style={{animationDelay: `${0.2 * index}s`, opacity: 0}}>
+                <FontAwesomeIcon className="profile_btn_icon" size="2x" icon={ProfileLinkIcon(props.url)}/>
+                <h4>{props.username}</h4> 
+            </div>
+        </a>
     )
 }
 
