@@ -145,6 +145,25 @@ class DashboardPage extends React.Component {
                         <p className="switch_subtitle">Censor links</p>
                     </div> */}
 
+                    <h2>Manage Disq Plus (Stripe Billing Portal)</h2>
+                    <button 
+                    className="pls_no btn_porp"
+                    onClick={async () => {
+                        let res = await fetch(`${config.endpoint}/subscription/manage`, {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "token": localStorage.token
+                            }
+                        })
+                        let st = await res.json()
+
+                        window.location.href = st.url
+                    }} 
+                    style={{margin: 0}}>
+                        Manage Subscription
+                    </button>
+
                     <h2>Legacy Account Migration</h2>
                     <h2 className="shx_desc">
                         If you previously had an account with Disq and wish to copy over your data from the old account, you may do so here.

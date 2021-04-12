@@ -9,6 +9,13 @@ import DisabledAccNotice from '../../components/DisabledAccNotice'
 import Sidebar from '../../components/Sidebar'
 import QuickUpload from '../../components/QuickUpload';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, fas)
+
 class index extends React.Component {
     constructor(props){
         super(props)
@@ -43,6 +50,9 @@ class DashboardPage extends React.Component {
                 privileges: {
                     administrator: false,
                     verified: false
+                },
+                plus: {
+                    active: false
                 }
             },
             sidebar: "",
@@ -70,8 +80,8 @@ class DashboardPage extends React.Component {
             "{{NAME}} has joined your channel.",
             "{{NAME}} joined the game",
             "What will it be today then, {{NAME}}?",
-            "*pats {{NAME}}*",
-            "Konnichiwa, {{NAME}}-chan!",
+            "G'day, {{NAME}}",
+            "Konnichiwa, {{NAME}}-chan!", // how to scare your entire user-base
             "Welcome back to Disq, {{NAME}}!"
         ]
         let num = Math.floor(Math.random() * greetings.length)
@@ -82,14 +92,15 @@ class DashboardPage extends React.Component {
 
     render() {
         return (
-            <main className="disq_main">
+            <main className="flx_center disq_main">
                 {this.state.sidebar}
                 <div className="disq_content">
-                    <h1 className="welcomeback">{this.state.greeting}</h1>
+                    <h1 className="center welcomeback">{this.state.greeting}</h1>
                     <div className="land_sideby">
                         <div className="quick_actions"> 
                             <QuickUpload/>
                             <QuickActions/>
+                            <PlusUpsell user={this.state.user}/>
                         </div>
                         <Changelog/>
                     </div>
@@ -98,6 +109,26 @@ class DashboardPage extends React.Component {
         );
     }
 }
+
+
+function PlusUpsell({user}) {
+    return (
+        <div>
+            <h2 className="land_header">Disq Plus</h2>
+            <a href="/dashboard/plus" style={{color: "#fff"}}>
+                <div className="land_plus">
+                    <div className="land_plus_content">
+                    <h1>PLUS</h1>
+                        <p>{user.plus.active ? "Manage your subscription" : "Support us and get perks. Learn more"} 
+                            <FontAwesomeIcon className="land_plus_chevron" size="1x" icon={["fas", "chevron-right"]}/>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    )
+}
+
 
 function QuickActions() {
     return (                 
@@ -112,9 +143,9 @@ function QuickActions() {
                     <h3>Create Short URLs</h3>
                     <span className="material-icons">link</span>
                 </div></a>
-                <a href="/dashboard/sharex"><div className="quick_action">
-                    <h3>Configure ShareX</h3>
-                    <span className="material-icons">screenshot</span>
+                <a href="/dashboard/linkpage"><div className="quick_action">
+                    <h3>Setup your Linkpage</h3>
+                    <span className="material-icons">account_box</span>
                 </div></a>
             </div>
         </div>

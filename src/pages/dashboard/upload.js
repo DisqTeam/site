@@ -10,6 +10,7 @@ import DisabledAccNotice from '../../components/DisabledAccNotice'
 import Sidebar from '../../components/Sidebar'
 import RecentUpload from '../../components/RecentUpload';
 import config from '../../config.json';
+import Domains from '../../components/Domains';
 
 class index extends React.Component {
     constructor(props){
@@ -47,6 +48,9 @@ class DashboardPage extends React.Component {
                 privileges: {
                     administrator: false,
                     verified: false
+                },
+                plus: {
+                    active: false
                 }
             },
             current: "",
@@ -54,6 +58,7 @@ class DashboardPage extends React.Component {
             recent: [],
             sidebar: "",
             errorText: "",
+            baseUrl: "https://disq.me",
             page: 0
         }
         this.props.SSR.bind(this);
@@ -104,7 +109,7 @@ class DashboardPage extends React.Component {
         })
         .then((res) => {
             if(!res.data.success) return this.setState({ current: <RecentUpload filename={res.data.file.name} percent={res.data.description}/> })
-            this.setState({ current: <RecentUpload filename={res.data.file.name} percent="Uploaded!"/> })
+            this.setState({ current: <RecentUpload domain={this.state.baseUrl} filename={res.data.file.name} percent="Uploaded!"/> })
         })
         .catch((res) => {
             this.setState({ current: <RecentUpload filename={files[0].name} percent={res.response.data.description}/> })
@@ -127,6 +132,19 @@ class DashboardPage extends React.Component {
                             </div>
                         )}
                     </Dropzone>
+
+                    <div className="sideby_center sideby">
+                        <select className="shx_select" name="url" onChange={(e) => this.setState({baseUrl: e.target.value})}>
+                                <Domains/>
+                        </select>
+                        <p style={{marginLeft: "15px"}}>Your upload limit is {this.state.user.plus.active ? "70MiB" : "30MiB"}</p>
+                        {this.state.user.plus.active ?  "" : 
+                            <a style={{marginLeft: "5px", fontWeight: "700"}} href="/dashboard/plus">
+                                <button className="btn_small btn_porp">Increase</button>
+                            </a>
+                        }
+                    </div>
+
 
                     <h3>Recent Uploads</h3>
                     <div className="recent_container">

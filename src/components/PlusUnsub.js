@@ -18,7 +18,7 @@ export default function PlusUnsub() {
             </div>
             <div className="plus_perks_container">
                 <PlusPerk title="Profile badge" description="A cool profile badge in the dashboard to show how epic you are" gradient={2}/>
-                <PlusPerk title="I love you" description="By getting Disq+, you're helping me (one person!) run this service for free." gradient={3}/>
+                <PlusPerk title="I love you" description="By getting Disq+, you're helping us (a small team!) run this service for free." gradient={3}/>
             </div>
 
             <h2>What do you spend the money on?</h2>

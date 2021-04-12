@@ -57,7 +57,8 @@ class Sidebar extends Component {
                         <div className="user_name">
                             <div className="user_name_container">
                                 {this.props.user.username.split("#")[0]}
-                                {(this.props.user.privileges.verified) ? <span className="flag material-icons">check_circle</span> : void(0)}
+                                {(this.props.user.privileges.verified) ? <span className="flag material-icons">check_circle</span> : ""}
+                                {(this.props.user.plus.active) ? <span className="flag material-icons">favorite</span> : ""}
                             </div>
                             <p className="user_tag">{"#" + this.props.user.username.split("#")[1]}</p>
                         </div>

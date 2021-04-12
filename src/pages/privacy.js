@@ -74,6 +74,11 @@ export default function privacy() {
         </li>
       </ul>
 
+      <h4>Third Parties & Your information</h4>
+      <p>
+        We may pass your email to our partner, <b>Stripe</b>, for payment processing, in the event that you access the &quot;Disq Plus&quot; checkout or payment portal
+      </p>
+
       <h4>Security of Your Personal Information</h4>
       <p>
         When we collect and process personal information, and while we retain
@@ -199,7 +204,7 @@ export default function privacy() {
       <p>
         Edward Taylor
         <br />
-        souraddress (at) gmail (dot) com{" "}
+        support (at) disq (dot) me{" "}
       </p>
     </div>
   );

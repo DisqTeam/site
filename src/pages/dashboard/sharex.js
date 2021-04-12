@@ -6,6 +6,7 @@ import check_token from '../../components/TokenChecker'
 import EmailVerifyNotice from '../../components/EmailVerifyNotice'
 import DisabledAccNotice from '../../components/DisabledAccNotice'
 import Sidebar from '../../components/Sidebar'
+import Domains from '../../components/Domains'
 
 class index extends React.Component {
     constructor(props){
@@ -104,11 +105,7 @@ class DashboardPage extends React.Component {
                     <div className="shx_sideby">
                         <h2>Domain</h2>
                         <select className="shx_select" name="url" onChange={(e) => this.setState({baseUrl: e.target.value})}>
-                            <option value="https://disq.me">disq.me</option>
-                            <option value="https://i.kindas.us">i.kindas.us</option>
-                            <option value="https://files.stringy.software">files.stringy.software</option>
-                            <option value="https://pissbaby.tech">pissbaby.tech</option>
-                            <option value="https://premid.fail">premid.fail</option>
+                            <Domains/>
                         </select>
                     </div>
                     <button onClick={this.createConfig} className="btn_porp">Download SXCU</button>

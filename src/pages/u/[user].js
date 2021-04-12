@@ -2,6 +2,7 @@ import React from 'react'
 import Twemoji from 'react-twemoji';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Tippy from '@tippyjs/react';
 
 import HeadProfile from '../../components/HeadProfile';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -32,10 +33,15 @@ function ActualUserProfile({ bio, username, pfp, banner, links, flags, code}) {
                     <div className="profile_header" style={{backgroundImage: `url(${config.endpoint}/banners/${banner})`}}></div>
                     <img className="profile_pfp" src={pfp}></img>
                     <h1 className="profile_username">
-                        {username} 
+                        {username}                
                         {flags.verified 
-                        ? <span className="profile_tick profile_username material-icons">check_circle</span>  
-                        : void(0)}
+                        ? <Tippy theme="disq" animation="discord-anim" content="Verified" placement="top">
+                            <span className="profile_tick profile_username material-icons">check_circle</span>
+                        </Tippy> : ""}
+
+                        {flags.plus ? <Tippy theme="disq" animation="discord-anim" content="Plus Subscriber" placement="top"> 
+                            <span className="profile_tick profile_username material-icons">favorite</span> 
+                        </Tippy>   : ""}
                     </h1>
                     <h4 className="profile_tag">@{code}</h4>
                     <p className="profile_bio">

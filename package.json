@@ -33,6 +33,7 @@
     "react-popper": "^2.2.4",
     "react-progress-bar": "^0.1.0",
     "react-router": "^5.2.0",
+    "react-spinkit": "^3.0.0",
     "react-spinners": "^0.10.4",
     "react-transition-group": "^4.4.1",
     "react-twemoji": "^0.3.0",

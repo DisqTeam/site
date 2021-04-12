@@ -8,25 +8,34 @@ import '../assets/css/tooltip.scss';
 import '../assets/css/profile.scss'
 import '../assets/css/404.scss'
 import '../assets/css/more.scss'
+import '../assets/css/spinner.scss'
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/material.css';
 
 function Disq({ Component, pageProps }) {
     React.useEffect(() => {
-
-        // function sus() {
-            var element = null;
-            var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-            while (element == walker.nextNode()) {
-                console.log(element.textContent)
-              element.textContent = element.textContent.replace(new RegExp(".*"), "among us");
-            }
-        // }
-
-        // window.sus = sus;
+        setTimeout(() => {
+            document.getElementById("curtain").style.display = "none";
+        }, 500)
     })
-    return <Component {...pageProps} />
+    return (
+        <main>
+            <div className="curtain" id="curtain">
+                <div className="supercenter">
+                    <div className="sk-chase">
+                        <div className="sk-chase-dot"></div>
+                        <div className="sk-chase-dot"></div>
+                        <div className="sk-chase-dot"></div>
+                        <div className="sk-chase-dot"></div>
+                        <div className="sk-chase-dot"></div>
+                        <div className="sk-chase-dot"></div>
+                    </div>
+                </div>
+            </div>
+            <Component {...pageProps} />
+        </main>
+    )
 }
 
 export default Disq

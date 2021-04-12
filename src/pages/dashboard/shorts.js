@@ -55,11 +55,14 @@ class DashboardPage extends React.Component {
             sidebar: "",
             tableData: "",
             errorText: "",
-            page: 0
+            custom: "",
+            page: 0,
+            maxPages: 1
         }
         this.props.SSR.bind(this);
         this.createSurl.bind(this)
         this.paginate.bind(this);
+        this.plusUpsell.bind(this);
     }
 
     getSurl = async (page) => {
@@ -71,19 +74,19 @@ class DashboardPage extends React.Component {
         .then(res => res.json())
         .then(surls => {
             if(surls.shorts.length === 0) return this.setState({page: page - 1});
-            let tableData = surls.shorts.map(s => (
-                <tr>
+            let tableData = surls.shorts.map((s, i) => (
+                <tr key={i}>
                     <td><a className="table_link" href={window.location.origin + "/s/" + s.shortcode}>{window.location.origin + "/s/" + s.shortcode}</a></td>
                     <td><a className="table_link" href={atob(s.url)}>{atob(s.url)}</a></td>
                     <td className="align_right">
                     <Tippy theme="disq" animation="discord-anim" content="Delete URL" placement="top">
-                            <button className="btn_delete btn_rod" onClick={() => this.deleteSurl(s.shortcode)}><span class="material-icons">delete</span></button>
+                            <button className="btn_delete btn_rod" onClick={() => this.deleteSurl(s.shortcode)}><span className="material-icons">delete</span></button>
                         </Tippy>
                     </td>
                 </tr>
             ))
             this.setState({tableData: ""})
-            this.setState({tableData})
+            this.setState({tableData, maxPages: surls.pages})
         })
             
     }
@@ -93,7 +96,7 @@ class DashboardPage extends React.Component {
 
         fetch(`${config.endpoint}/surl/create`, {
             method: "POST",
-            body: JSON.stringify({ url: btoa(this.state.newUrl) }),
+            body: JSON.stringify({ url: btoa(this.state.newUrl), shortCode: this.state.custom }),
             headers: { 'token': localStorage.token, 'Content-Type': 'application/json' }
         })
         .then(res => res.json())
@@ -135,7 +138,7 @@ class DashboardPage extends React.Component {
                     DeletionConfirmation.fire({
                         icon: "success",
                         title: "Success!",
-                        text: "Your file is gone."
+                        text: "Your short url is gone."
                     })
                 })
             }
@@ -146,6 +149,16 @@ class DashboardPage extends React.Component {
         if(this.state.page + am < 0) return;
         this.setState({page: this.state.page + am})
         this.getSurl(this.state.page + am)
+    }
+
+    plusUpsell = async () => {
+        if(!this.state.user.plus.active){
+            DeletionConfirmation.fire({
+                icon: "info",
+                title: "Notice",
+                text: "You need Disq Plus to create Custom Short URLs"
+            })
+        }
     }
 
     async componentDidMount() {
@@ -167,6 +180,11 @@ class DashboardPage extends React.Component {
                     <h1 className="welcomeback">Short URLs</h1>
 
                     <h3>Create Short URL</h3>
+                    <div className="sideby_center sideby">
+                        <p>Custom Short URL (leave blank for random) - /s/</p>
+                        <input onClick={() => this.plusUpsell()} onChange={(e) => this.setState({custom: e.target.value})} placeholder="mycustom" />
+                        <br/>
+                    </div>
                     <input onChange={(e) => this.setState({newUrl: e.target.value})} className="surl_create_input" placeholder="https://bruh.moment" />
                     <button onClick={this.createSurl} className="btn_small btn_porp">Create</button>
                     <p className="login_error">{this.state.errorText}</p>

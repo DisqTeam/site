@@ -25,7 +25,7 @@ class index extends React.Component {
     render() {
         return (
             <Twemoji options={{ className: 'twemoji' }}>
-                    <Head title="Home" description="File upload, short urls and many more."/>
+                    <Head title="Home" description="File upload, short urls and much more."/>
                     <main>
                         <div className="stringy_software_watermark">
                             <p>A <a href="https://stringy.software">Stringy Software</a> project</p>
@@ -96,7 +96,7 @@ class BoxMain extends React.Component {
                         <div className="box_main_content">
                             <img className="main_logo" src="/assets/logo512.png" alt="Disq"/>
                             <div className="box_main_text">
-                                <h3 className="tagline_text">File upload, short urls and many more.</h3>
+                                <h3 className="tagline_text">File upload, short urls and much more.</h3>
                                 {
                                     (config.comingSoonMode) 
                                     ? <p>Coming soon.</p>

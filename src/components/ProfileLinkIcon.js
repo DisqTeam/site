@@ -1,4 +1,4 @@
-export default (url) => {
+const ProfileLinkIcon = (url) => {
     const u = new URL(url)
     const actual_url = u.hostname.replace("www.", "")
 
@@ -19,7 +19,7 @@ export default (url) => {
             return ["fab", "twitter"];
 
         case "open.spotify.com":
-            return ["fab", "twitter"];
+            return ["fab", "spotify"];
 
         case "paypal.me":
         case "paypal.com":
@@ -50,9 +50,15 @@ export default (url) => {
         case "tiktok.org":
         case "tiktokv.com":
             return ["fab", "tiktok"];
+
+        case "reddit.com":
+        case "redd.it":
+            return ["fab", "reddit"]
         
 
         default:
             return ["fas", "link"];
     }
 }
+
+export default ProfileLinkIcon;

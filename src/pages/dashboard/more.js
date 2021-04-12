@@ -71,7 +71,7 @@ class DashboardPage extends React.Component {
                         <Service name="Files" icon="description" link="/dashboard/files"/>
                         <Service name="Short URLs" icon="link" link="/dashboard/shorts"/>
                         <Service name="Linkpage" icon="person" link="/dashboard/linkpage"/>
-                        {/* <Service name="Plus" icon="add" link="/dashboard/plus"/> */}
+                        <Service name="Plus" icon="add" link="/dashboard/plus"/>
                         <Service name="ShareX" icon="screenshot" link="/dashboard/sharex"/>
                         <Service name="Settings" icon="settings" link="/dashboard/settings"/>
                     </div>
