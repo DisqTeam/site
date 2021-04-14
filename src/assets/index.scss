@@ -2,16 +2,18 @@
 Disq SCSS
 */
 
-@import 'css/colors.scss';
+@import './css/colors.scss'; /* legacy*/
+@import './css/mixins/theme.scss';
+
 
 /* button colors */
 $btn_lighten_amount: 10%;
 $btn_transition: 0.1s ease;
 
-.btn_blu_3{ background-color: rgb(53, 81, 158); transition: $btn_transition; }
+.btn_blu_3{ @include themed('background-color', 'disq_blu'); transition: $btn_transition; }
 .btn_blu_3{ background-color: lighten(rgb(53, 81, 158), $btn_lighten_amount); }
 
-.btn_porp{ background-color: $disq_purple; transition: $btn_transition; }
+.btn_porp{ @include themed('background-color', 'disq_purple'); color: #fff !important; transition: $btn_transition; }
 .btn_porp:hover{ background-color: lighten($disq_purple, $btn_lighten_amount); }
 
 .btn_rod{ background-color: #cc1a23; transition: $btn_transition; }
@@ -19,11 +21,18 @@ $btn_transition: 0.1s ease;
 
 /* the clusterfuck */
 
-body {
-    background-color: $brand_color_1;
-    color: #fff;
+body, .app, #__next {
+    @include themed('background-color', 'brand_color_1');
+    @include themed('color', 'text_color');
+
     font-family: "Roboto";
     margin: 0;
+
+    transition: background-color 0.2s ease;
+
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .main_text{
@@ -48,7 +57,7 @@ a {
 @media only screen and (min-width: 850px) {
     .main_box{
         // padding: 100px;
-        background-color: $brand_color_2;
+        @include themed('background-color', 'brand_color_2');
         border-radius: 15px;
         display: flex;
         flex-direction: row;
@@ -56,7 +65,7 @@ a {
 
     .box_features {
         width: 350px;
-        background-color: #10141b;
+        @include themed('background-color', 'brand_color_3');
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
     
@@ -131,8 +140,8 @@ button {
     font-family: "Roboto";
     font-weight: 500;
     font-size: 20px;
-    color: white;
-    background-color: rgb(38, 48, 77);
+    @include themed('color', 'text_color');
+    @include themed('background-color', 'brand_color_3');
 }
 
 input {
@@ -142,13 +151,13 @@ input {
     border: none;
     cursor: text;
 
-    background-color: rgb(38, 48, 77);
-    background-color: rgb(38, 48, 77);
+    // background-color: rgb(38, 48, 77);
+    @include themed('background-color', 'brand_color_3');
 
     font-family: "Roboto";
     font-weight: 400;
     font-size: 15px;
-    color: #fff;
+    @include themed('color', 'text_color');
 }
 
 textarea {
@@ -158,13 +167,12 @@ textarea {
     border: none;
     cursor: text;
 
-    background-color: rgb(38, 48, 77);
-    background-color: rgb(38, 48, 77);
+    @include themed('background-color', 'brand_color_3');
 
     font-family: "Roboto";
     font-weight: 400;
     font-size: 15px;
-    color: #fff;
+    @include themed('color', 'text_color');
 }
 
 
@@ -239,7 +247,7 @@ $sidebar-mode: $sidebar-width-small;
     z-index: 10;
     top: 0;
     left: 0;
-    background-color: $brand_color_2;
+    @include themed('background-color', 'brand_color_2');
     // overflow-x: hidden;
 
     display: flex;
@@ -313,8 +321,8 @@ $sidebar-mode: $sidebar-width-small;
     display: block;
     text-decoration: none;
     // width: $sidebar-width;
-    color: #fff;
-    background-color: $brand_color_1;
+    @include themed('color', 'text_color');
+    @include themed('background-color', 'brand_color_1');
 }
 
 .sidebar_option{
@@ -324,8 +332,8 @@ $sidebar-mode: $sidebar-width-small;
     display: block;
     text-decoration: none;
     // width: $sidebar-width;
-    color: #fff;
-    background-color: $brand_color_3;
+    @include themed('color', 'text_color');
+    @include themed('background-color', 'brand_color_3');
     // transition: 0.2s;
 }
 
@@ -334,7 +342,7 @@ $sidebar-mode: $sidebar-width-small;
 }
 
 .sidebar_option:hover{
-    background-color: #0e1318;
+    @include themed('background-color', 'brand_color_4');
 }
 
 .sidebar_menu_btn {
@@ -342,7 +350,7 @@ $sidebar-mode: $sidebar-width-small;
     align-content: center;
     justify-items: center;
 
-    background-color: #0e1318;
+    @include themed('background-color', 'brand_color_4');
     padding: 15px;
 }
 
@@ -381,6 +389,7 @@ $sidebar-mode: $sidebar-width-small;
     border-radius: 20px;
     font-size: 14px;
     vertical-align: middle;
+    color: #fff;
 }
 
 .menu_btn {
@@ -432,7 +441,7 @@ $sidebar-mode: $sidebar-width-small;
     width: 100%;
     // padding: 20px;
     margin: 5px;
-    background-color: $brand_color_2;
+    @include themed('background-color', 'brand_color_2');
     border-radius: 10px;
     position: relative;
     color: white;
@@ -448,13 +457,17 @@ $sidebar-mode: $sidebar-width-small;
 }
 
 .quick_action:hover{
-    background-color: #0e1318;
+    @include themed('background-color', 'brand_color_4');
 }
 
 $quick_action_size: 2vw;
 
-.quick_action span{ margin-left: 10px; }
+.quick_action span{ 
+    margin-left: 10px; 
+    @include themed('color', 'text_color');
+}
 .quick_action h3 { 
+    @include themed('color', 'text_color');
     font-weight: 400;
     margin-left: 10px; 
     margin-top: 10px;
@@ -558,11 +571,11 @@ $quick_action_size: 2vw;
     width: 95%;
     margin-top: 20px;
     height: 200px;
-    border-color: #07090c;
+    @include themed('border-color', 'brand_color_3');
     border-width: 4px;
     border-radius: 10px;
     border-style: solid;
-    background-color: #12161d;
+    @include themed('background-color', 'brand_color_4');
 }
 
 .upload_icon {
@@ -630,7 +643,7 @@ $quick_action_size: 2vw;
     display: block;
     text-decoration: none;
     // width: $sidebar-width;
-    color: #fff;
+    @include themed('color', 'text_color');
     transition: 0.2s;
 }
 
@@ -738,13 +751,12 @@ $quick_action_size: 2vw;
     border: none;
     cursor: text;
 
-    background-color: rgb(38, 48, 77);
-    background-color: rgb(38, 48, 77);
+    @include themed('background-color', 'brand_color_4');
 
     font-family: "Roboto";
     font-weight: 400;
     font-size: 20px;
-    color: #fff;
+    @include themed('color', 'text_color');
 }
 
 .shx_sideby {
@@ -877,14 +889,14 @@ $quick_action_size: 2vw;
 }
 
 .btn_delete {
-    color: #d43131; 
-    background-color: transparent;
+    @include themed('color', 'disq_red');
+    background-color: transparent !important;
     padding: 5px;
 }
 
 .btn_verify {
-    color: #506091;
-    background-color: transparent;
+    @include themed('color', 'disq_blu');
+    background-color: transparent !important;
     padding: 0;
 }
 
@@ -902,6 +914,7 @@ $quick_action_size: 2vw;
 }
 
 .shx_icon {
+    @include themed('filter', 'img_white');
     width: 25px;
 }
 
@@ -987,6 +1000,7 @@ $quick_action_size: 2vw;
 }
 
 .gh {
+    @include themed('color', 'text_color');
     // margin-top: 50%;
     width: 50px;
     height: 50px;
@@ -1057,14 +1071,13 @@ $quick_action_size: 2vw;
 }
 
 .cl_version {
-    font-size: 18px;
-    margin-bottom: 2px;
+    // font-size: 18px;
+    // margin-bottom: 2px;
     color: lighten($disq_purple, 20%);
-    text-decoration: underline;
 }
 
 .land_header {
-    font-weight: 400;
+    font-weight: 600;
     margin-left: 5px;
 }
 
@@ -1147,7 +1160,7 @@ $quick_action_size: 2vw;
 }
 
 .disq_table tbody tr:nth-of-type(even) {
-    background-color: $brand_color_2;
+    @include themed('background-color', 'brand_color_2');
 }
 
 .disq_table tbody tr:last-of-type {
@@ -1267,7 +1280,7 @@ input:checked + .slider:before {
     margin: 15px;
     font-size: 75px;
     letter-spacing: 5px;
-    color: $brand_color_3;
+    @include themed('color', 'brand_color_3');
     -webkit-text-stroke: rgba(187,43,230,1) 2px;
 }
 
@@ -1316,7 +1329,7 @@ input:checked + .slider:before {
 }
 
 .plus_subbed {
-    background-color: darken($brand_color_3, 1%);
+    @include themed('background-color', 'brand_color_3');
     padding: 25px;
     border-radius: 15px;
     width: 80vw;
@@ -1381,7 +1394,7 @@ input:checked + .slider:before {
 .curtain {
     width: 100%;
     height: 100%;
-    background-color: $brand_color_1;
+    @include themed('background-color', 'brand_color_1');
     z-index: 8;
     overflow: visible;
     position: absolute;

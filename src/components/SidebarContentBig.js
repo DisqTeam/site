@@ -48,7 +48,7 @@ export default function SidebarContentBig(props) {
 
             <div className="sidebar_bottom">
                 <p>disq.me</p>
-                <p>made with <span role="img" aria-label="purple heart">💜</span> by Stringy</p>
+                <p>made with <span role="img" aria-label="purple heart">💜</span> by the Disq team</p>
             </div>
         </div>
     )

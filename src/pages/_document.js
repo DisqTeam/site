@@ -6,10 +6,10 @@ class MyDocument extends Document {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
-  
+
   render() {
     return (
-      <Html>
+      <Html className="theme-dark">
         <Head>
           <meta name="theme-color" content="#6812ca" key="colortheme"/>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" />
@@ -25,4 +25,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument
+export default MyDocument;

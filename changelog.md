@@ -1,3 +1,23 @@
+<h4>v1.5.0</h4>
+<div className="changelog">
+    <p>
+    + We've merged with the Histacom team! Join our <a href="https://discord.gg/3eRxFpdK8z">Discord</a> for more info.<br/>
+    + Light and Ultradark themes<br/>
+    + Disq Plus (support us and get perks!)<br/>
+    + Vanity Short URLs for Plus users<br/>
+    + 70mb Upload limit for Plus users<br/>
+    + Linkpages (showcase your awesome social media)<br/>
+    + Home button on left to access this page easier<br/>
+    + Loading spinner to make the site look more polished<br/>
+    + Domain selecter in Upload page<br/>
+    + File upload limit displayed in Upload page<br/>
+    + Removed Changelog on Homepage and replaced with "What's new" (how meta)<br/>
+    <br/>
+    = Fixed NaN bug in Short URLs page<br/>
+    <br/>
+    </p>
+</div>
+
 <h4>v1.4.2</h4>
 <div>
     <p>

@@ -56,6 +56,7 @@ class DashboardPage extends React.Component {
         this.props.SSR.bind(this);
         this.migrate.bind(this);
         this.tokenRegen.bind(this);
+        this.setTheme.bind(this);
     }
 
     async componentDidMount() {
@@ -106,6 +107,15 @@ class DashboardPage extends React.Component {
         console.log(localStorage.censor)
     }
 
+    setTheme = (theme) => {
+        var d = new Date();
+        d.setTime(d.getTime() + (9999999*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = "disq_theme" + "=" + theme + ";" + expires + ";path=/";
+
+        document.querySelector("html").classList = `theme-${theme}`
+    }
+
     render() {
         return (
             <main>
@@ -127,24 +137,6 @@ class DashboardPage extends React.Component {
                         <img className="avatar_img" alt="Avatar" src={this.state.user.avatar}></img>
                     </div>
 
-                    <h2>Your Token (hover to view)</h2>
-                    <h2 className="shx_desc">
-                        Your token can be used to authenticate with the Disq API. <b>Do NOT share it!</b><br/>
-                        <span className="shx_warning">Warning! Regenerating your token will invalidate all current SXCUs and log out every device.</span>
-                    </h2>
-                    <input className="settings_long settings_blur" value={(typeof window !== 'undefined') ? localStorage.token : "Woops.."}></input>
-                    <button onClick={this.tokenRegen} className="btn_small btn_porp">Regenerate</button>
-
-                    {/* <h2>Misc</h2>
-                    <p>These settings will save in your browser.</p>
-                    <div className="sideby_center sideby">
-                        <label class="switch">
-                            <input type="checkbox" defaultChecked={this.state.switches.censor} onChange={(e) => this.setStorage("censor", e)}/>
-                            <span class="slider round"></span>
-                        </label>
-                        <p className="switch_subtitle">Censor links</p>
-                    </div> */}
-
                     <h2>Manage Disq Plus (Stripe Billing Portal)</h2>
                     <button 
                     className="pls_no btn_porp"
@@ -163,6 +155,33 @@ class DashboardPage extends React.Component {
                     style={{margin: 0}}>
                         Manage Subscription
                     </button>
+
+                    <h2>Theme</h2>
+                    <select className="pls_no shx_select" name="url" onChange={(e) => this.setTheme(e.target.value)}>
+                        <optgroup label="Themes">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                            <option value="ultradark">Ultradark</option>
+                        </optgroup>
+                    </select>
+
+                    <h2>Your Token (hover to view)</h2>
+                    <h2 className="shx_desc">
+                        Your token can be used to authenticate with the Disq API. <b>Do NOT share it!</b><br/>
+                        <span className="shx_warning">Warning! Regenerating your token will invalidate all current SXCUs and log out every device.</span>
+                    </h2>
+                    <input className="settings_long settings_blur" value={(typeof window !== 'undefined') ? localStorage.token : "Woops.."}></input>
+                    <button onClick={this.tokenRegen} className="btn_small btn_porp">Regenerate</button>
+
+                    {/* <h2>Misc</h2>
+                    <p>These settings will save in your browser.</p>
+                    <div className="sideby_center sideby">
+                        <label class="switch">
+                            <input type="checkbox" defaultChecked={this.state.switches.censor} onChange={(e) => this.setStorage("censor", e)}/>
+                            <span class="slider round"></span>
+                        </label>
+                        <p className="switch_subtitle">Censor links</p>
+                    </div> */}
 
                     <h2>Legacy Account Migration</h2>
                     <h2 className="shx_desc">

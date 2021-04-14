@@ -2,7 +2,8 @@ import React from 'react'
 import config from '../config.json';
 import PlusPerk from './PlusPerk';
 
-import {loadStripe} from '@stripe/stripe-js';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(config.stripePublic);
 
@@ -37,6 +38,9 @@ export default function PlusUnsub() {
 
             <h2>Convinced?</h2>
             <div className="plus_stripe">
+                <PayPalScriptProvider options={{ "client-id": config.paypalClient }}>
+                    <PayPalButtons style={{ layout: "horizontal" }} />
+                </PayPalScriptProvider>
                 <button className="btn_porp btn" onClick={
                     async () => {
                         const stripe = await stripePromise
@@ -56,7 +60,7 @@ export default function PlusUnsub() {
                 }>
                     Subscribe (£3.99 / month)
                 </button>
-                <img className="plus_stripe_badge" src="/assets/stripe.svg" width="120vw"></img>
+                {/* <img className="plus_stripe_badge" src="/assets/stripe.svg" width="120vw"></img> */}
             </div>
         </div>
     )

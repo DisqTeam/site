@@ -1,3 +1,4 @@
+@import './mixins/theme.scss';
 @import 'colors.scss';
 
 .profile_container {
@@ -19,13 +20,13 @@
 }
 
 .profile_pfp {
-    background-color: $brand_color_1;
+    @include themed('background-color', 'brand_color_1');
 
     height: 128px;
     width: 128px;
     
     border-radius: 1000px;
-    border-color: $brand_color_3;
+    @include themed('color', 'brand_color_3');
     border-width: 4px;
     border-style: solid;
 
@@ -67,7 +68,7 @@
 
 .profile_tag {
     margin-top: -5px;
-    color: rgb(145, 145, 145);
+    @include themed('color', 'groi');
 }
 
 .profile_btn {
@@ -76,7 +77,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: $brand_color_2;
+    @include themed('background-color', 'brand_color_2');
     padding: 10px;
     border-radius: 5px;
     margin: 5px;
@@ -109,10 +110,15 @@
 }
 
 .profile_btn h4 {
+    @include themed('color', 'text_color');
     margin: 0;
     margin-left: 5px;
     font-size: 20px;
     font-weight: 200;
+}
+
+.profile_btn svg {
+    @include themed('color', 'text_color');
 }
 
 .profile_btn_icon {
@@ -139,14 +145,14 @@
 
     background-position: center;
     background-size: cover;
-    background-color: $watermark_color;
+    @include themed('background-color', 'watermark_color');
 }
 
 .profile_editor_box {
     display: flex;
     flex-direction: column;
     
-    background-color: $brand_color_3;
+    @include themed('background-color', 'brand_color_4');
     width: 35vw;
     border-radius: 15px;
     padding: 15px;
