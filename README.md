@@ -3,7 +3,7 @@
   <br/>
   <b>Disq Site</b>
   <br/>
-  by The Disq Team
+  by The Disq Team<br/>
   Built using NextJS & React
 </p>
 
