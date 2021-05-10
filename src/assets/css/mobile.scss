@@ -1,10 +1,11 @@
+@import './mixins/theme.scss';
 @import 'colors.scss';
 
 /* Frontpage responsive */
 
 @media only screen and (max-width: 1000px) {
     .main_box{
-        background-color: $brand_color_2;
+        @include themed('background-color', 'brand_color_2');
         border-radius: 15px;
         display: flex;
         flex-direction: column;

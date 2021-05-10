@@ -31,11 +31,11 @@ class index extends React.Component {
         <main>
           <div className="stringy_software_watermark">
             <p>
-              A <a href="https://stringy.software">Stringy Software</a> project
+              A <b><a href="https://stringy.software">Stringy Software</a></b> project
             </p>
             <p>
               Inspired by{" "}
-              <a href="https://github.com/WeebDev/lolisafe">lolisafe</a>
+              <b><a href="https://github.com/WeebDev/lolisafe">lolisafe</a></b>
             </p>
           </div>
           <div className="supercenter center main_box">

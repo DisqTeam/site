@@ -215,15 +215,24 @@ function Changelog() {
           <ul>
             <li>Pain theme (you'll regret it)</li>
             <li>Emoji Picker in Linkpage editor!</li>
+            <li>New login page!</li>
+            <li>You can now login with Twitter and GitHub as well as Discord!</li>
+
             <li>
               Textbox that displayed token has now been replaced with a "copy
               token" button in Settings
             </li>
+            <li>Tooltip for previewing files in the Files page</li>
             <li>Redesigned More page</li>
+            <li>Redesigned Settings page</li>
+            <li>API Documentation</li>
+            <li>Improvements to the Linkpage edit UI</li>
             <li>Image previews in the Files page</li>
           </ul>
           <u>Bugfixes</u>
           <ul>
+            <li>Optimised <b>A LOT</b> of the site for Mobile devices.</li>
+            <li>Fixed bug with not being able to disable your linkpage</li>
             <li>
               Fixed bug with profile pictures disappearing, relogin to refresh
               your profile picture!

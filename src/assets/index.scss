@@ -190,12 +190,12 @@ textarea {
 
 .stringy_software_watermark p {
     margin: 0;
-    color: #fff;
+    @include themed('color', 'text_color');
 }
 
 .stringy_software_watermark a {
     margin: 0;
-    color: #243247;
+    // color: #243247;
     text-decoration: none;
 }
 

@@ -34,7 +34,7 @@ class index extends React.Component {
     const creds = await check_token();
     if (creds.success) {
       console.log("creds correct");
-      // location.href = "/dashboard"
+      location.href = "/dashboard"
     }
   }
 
