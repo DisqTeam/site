@@ -68,13 +68,19 @@ class DashboardPage extends React.Component {
             if(users.users.length === 0) return;
             let tableData = users.users.map(s => (
                 <tr>
-                    <td><p>{(s.enabled) ? "Yes" : "No"}</p></td>
+                    <td>
+                        <a href={s.avatar}>
+                            <img src={s.avatar} width="50px" style={{borderRadius: "1000px"}}></img>
+                        </a>
+                    </td>
                     <td><p>{s.username}</p></td>
                     <td><p>{s.userId}</p></td>
-                    <td><p>{s.discordId}</p></td>
-                    <td><a className="table_link" href={s.avatar}>Link</a></td>
                     <td><p>{dayjs.unix(s.timestamp).format('HH:mm:ss DD/MM/YYYY')}</p></td>
+                    <td><p>{s.provider}</p></td>
+                    <td><p>{(s.linkpage) ? s.linkpage.url : ""}</p></td>
+                    <td><p>{(s.enabled) ? "Yes" : "No"}</p></td>
                     <td><p>{(s.verified) ? "Yes" : "No"}</p></td>
+                    <td><p>{(s.plusActive) ? "Yes" : "No"}</p></td>
                     <td className="align_right">
                         <Tippy theme="disq" animation="discord-anim" content="Verify user" placement="top">
                             <button className="btn_table btn_verify btn_blu" onClick={() => this.verifyUser(s.userId)}>
@@ -145,23 +151,27 @@ class DashboardPage extends React.Component {
                     <h1 className="welcomeback">Manage Users</h1>
 
                     <h3>Users</h3>
-                    <table className="disq_table">
-                        <thead>
-                            <tr>
-                                <th>Enabled</th>
-                                <th>Username</th>
-                                <th>ID</th>
-                                <th>Discord ID</th>
-                                <th>Avatar</th>
-                                <th>Date</th>
-                                <th>Verified</th>
-                                <th className="align_right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.tableData}
-                        </tbody>
-                    </table>
+                    <div className="disq_table_container">
+                        <table className="disq_table">
+                            <thead>
+                                <tr>
+                                    <th>Avatar</th>
+                                    <th>Username</th>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Auth Provider</th>
+                                    <th>Linkpage URL</th>
+                                    <th>Enabled</th>
+                                    <th>Verified</th>
+                                    <th>Plus</th>
+                                    <th className="align_right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.tableData}
+                            </tbody>
+                        </table>
+                    </div>
                     <div className="pagination">
                         <button className="btn_small" onClick={() => this.paginate(-1)}>Previous</button>
                         <p>{this.state.page + 1}/{this.state.maxPages + 1}</p>

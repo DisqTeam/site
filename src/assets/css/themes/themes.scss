@@ -1,5 +1,6 @@
 $themes: (
     dark: (
+        font: "Inter",
         disq_purple: #6812ca,
         disq_blu: rgb(53, 81, 158),
         disq_red: #d43131,
@@ -16,6 +17,7 @@ $themes: (
         img_black: brightness(0),
     ),
     light: (
+        font: "Inter",
         disq_purple: #6812ca,
         disq_blu: rgb(53, 81, 158),
         disq_red: #d43131,
@@ -32,6 +34,7 @@ $themes: (
         img_black: brightness(1),
     ),
     ultradark: (
+        font: "Inter",
         disq_purple: #6812ca,
         disq_blu: rgb(53, 81, 158),
         disq_red: #d43131,
@@ -43,6 +46,23 @@ $themes: (
         watermark_color:  #1b2636,
         text_color: #fff,
         text_color_alt: #000,
+
+        img_white: brightness(1),
+        img_black: brightness(0),
+    ),
+    pain: (
+        font: "Comic Sans MS",
+        disq_purple: rgb(78, 29, 255),
+        disq_blu: rgb(255, 81, 0),
+        disq_red: #ff0000,
+        groi: rgb(255, 255, 255),
+        brand_color_1: #00e1ff,
+        brand_color_2: #d9ff00,
+        brand_color_3: #1100ff,
+        brand_color_4: rgb(44, 35, 179),
+        watermark_color:  #1b2636,
+        text_color: rgb(250, 19, 250),
+        text_color_alt: rgb(182, 17, 17),
 
         img_white: brightness(1),
         img_black: brightness(0),

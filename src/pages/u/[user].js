@@ -3,6 +3,7 @@ import Twemoji from 'react-twemoji';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Tippy from '@tippyjs/react';
+import usr from '../../components/TokenChecker'
 
 import HeadProfile from '../../components/HeadProfile';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -10,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import config from '../../config.json';
-import ProfileLinkIcon from '../../components/ProfileLinkIcon';
+import ProfileLinkIcon from '../../resources/ProfileLinkIcon';
 
 import NotExist from '../404.js';
 
@@ -24,7 +25,7 @@ export default function UserProfile({ error, bio, username, pfp, banner, links, 
     }
 }
 
-function ActualUserProfile({ bio, username, pfp, banner, links, flags, code}) {
+function ActualUserProfile({ bio, username, pfp, banner, links, flags, code, isSelf}) {
     return (
         <Twemoji options={{ className: 'twemoji', folder: 'svg', ext: '.svg'}}>
             <div className="profile_container">
@@ -50,6 +51,14 @@ function ActualUserProfile({ bio, username, pfp, banner, links, flags, code}) {
                     <div className="profile_links">
                         {links.map(ProfileButton, this)}
                     </div>
+                    {/* <div className="sideby_center sideby profile_actions">
+                        <a href="https://disq.me/dashboard/linkpage" style={{color: "#fff", textDecoration: "none"}}>
+                            <div className="profile_promo">
+                                <span className="pagetitle_logo material-icons">edit</span>
+                                <h1>Edit Linkpage</h1>
+                            </div>
+                        </a>
+                    </div> */}
             </div>
         </Twemoji>
     )
@@ -80,7 +89,7 @@ UserProfile.propTypes = {
 UserProfile.getInitialProps = async (ctx) => {
     let { user } = ctx.query
     try {
-        let res = await axios.get(`${config.endpoint}/profile/${user}`)
+        const res = await axios.get(`${config.endpoint}/profile/${user}`)
 
         return {
             error: false,
@@ -92,7 +101,8 @@ UserProfile.getInitialProps = async (ctx) => {
             flags: res.data.profile.flags,
             code: res.data.profile.url
         }
-    } catch {
+    } catch(err) {
+        console.log(err)
         return { 
             error: true,
             bio: "", 
@@ -109,7 +119,7 @@ UserProfile.getInitialProps = async (ctx) => {
 
 function ProfileButton(props, index) {
     return (
-        <a className="nolinkstyle" href={props.url} target="_blank" rel="noreferrer">
+        <a key={index} className="nolinkstyle" href={props.url} target="_blank" rel="noreferrer">
             <div className="profile_btn" style={{animationDelay: `${0.2 * index}s`, opacity: 0}}>
                 <FontAwesomeIcon className="profile_btn_icon" size="2x" icon={ProfileLinkIcon(props.url)}/>
                 <h4>{props.username}</h4> 

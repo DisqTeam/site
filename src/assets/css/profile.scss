@@ -85,7 +85,7 @@
     min-width: 200px;
     width: 300px;
 
-    transition: background-color 0.1s ease;
+    transition: filter 0.1s ease;
     animation: slideInProfile ease 0.8s;
     animation-fill-mode: forwards;
 }
@@ -106,7 +106,8 @@
 
 .profile_btn:hover {
     cursor: pointer;
-    background-color: lighten($brand_color_2, 10%);
+    @include themed('background-color', 'brand_color_2');
+    filter: contrast(80%)
 }
 
 .profile_btn h4 {
@@ -195,11 +196,107 @@
 }
 
 .profile_urlbox {
-    width: 300px;
+    max-width: 30vw;
 }
 
 .profile_banner_longboi {
     padding-left: 0;
     width: 200px;
     background-color: transparent;
+}
+
+@media only screen and (max-width: 1000px) {
+    .sideby_linkpage {
+        flex-direction: column;
+    }
+
+    .profile_editor_box {
+        width: 80vw;
+    }
+
+    .profile_editor_emojipicker {
+        right: 2vw !important;
+    }
+}
+
+.profile_bio_container {
+    position: relative;
+}
+
+.profile_editor_emojipicker {
+    position: absolute;
+    right: 0.8vw;
+    bottom: 10%;
+    @include themed('color', 'groi');
+    z-index:1;
+    padding:0;
+    margin:0;
+}
+
+.profile_editor_emojipicker:hover {
+    transform: scale(1.2);
+    transition: .2s all;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 701px) {
+    .profile_actions {
+        position: absolute;
+        bottom: 35px;
+        left: 35px;
+        transform: none;
+    }
+
+    .profile_promo { 
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.profile_actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile_promo { 
+    margin: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    transition: .3s all; 
+    padding: 15px;
+    border-radius: 15px;
+    @include themed('background-color', 'brand_color_2');
+    width: 160px;
+    box-shadow: 0px 7px 28px -6px rgba(0,0,0,0.4);
+
+    h1 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    &:hover {
+        box-shadow: 10px 10px 28px -5px rgba(0,0,0,0.75);
+        transform: scale(1.1) translate(0%, -5%);
+        z-index: 1000;
+        cursor: pointer;
+    }
+}
+
+.profile_editfield {
+    & {
+        filter: contrast(30%);
+        margin-left: 10px;
+        transition: .3s ease filter;
+    }
+
+    &:hover {
+        filter: contrast(100%);
+        cursor: pointer;
+        transform: scale(1.1);
+    }
 }

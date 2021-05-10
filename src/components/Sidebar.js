@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Tippy from '@tippyjs/react';
 import SidebarContentBig from './SidebarContentBig';
 import SidebarContentSmall from './SidebarContentSmall';
+import AuthProviders from '../resources/AuthProviders';
+import UserIcons from './UserIcons';
 
 class Sidebar extends Component {
     constructor(props) {
@@ -47,43 +49,58 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div className={this.state.classes}>
-                <div className="sidebar_menu_btn" onClick={this.toggleMenu}>
-                    <span className="menu_btn material-icons">menu</span>
-                    <div className="sidebar_menu_btn_content">
-                        <div className="avatar_container">
-                            <img className="avatar_img" alt="Avatar" src={this.state.user.avatar}></img>
-                        </div>
-                        <div className="user_name">
-                            <div className="user_name_container">
-                                {this.props.user.username.split("#")[0]}
-                                {(this.props.user.privileges.verified) ? <span className="flag material-icons">check_circle</span> : ""}
-                                {(this.props.user.plus.active) ? <span className="flag material-icons">favorite</span> : ""}
+            <div>
+                <div className="sidebar_mobile">
+                    <div className="sidebar_menu_btn" onClick={this.toggleMenu}>
+                        <span className="menu_btn material-icons">menu</span>
+                        <div className="sidebar_menu_btn_content" style={{alignItems: "center"}}>
+                            <div className="avatar_container">
+                                <img className="avatar_img" alt="Avatar" src={this.state.user.avatar}></img>
                             </div>
-                            <p className="user_tag">{"#" + this.props.user.username.split("#")[1]}</p>
+                            <div className="user_name" style={{marginBottom: 0}}>
+                                <div className="user_name_container">
+                                    {this.props.user.username}
+                                    <UserIcons user={this.props.user}></UserIcons>
+                                </div>
+                                <div className="user_tag">
+                                    {AuthProviders.names[this.props.user.authProvider]} account
+                                </div>
+                            </div>
                         </div>
+                        {
+                            (this.state.show)
+                            ? <SidebarContentBig logout={this.logout} user={this.props.user}/>
+                            : void(0)
+                        }
                     </div>
                 </div>
-                {/* <div className="sidebar_big">
-                    <div className="user_card">
-                        <div className="avatar_container">
-                            <img className="avatar_img" alt="Avatar" src={this.state.user.avatar}></img>
-                        </div>
-                        <div className="user_name">
-                            <div className="user_name_container">
-                                {this.props.user.username.split("#")[0]}
-                                {(this.props.user.privileges.verified) ? <span className="flag material-icons">check_circle</span> : void(0)}
+                <div className={this.state.classes}>
+                    <div className="sidebar_menu_btn" onClick={this.toggleMenu}>
+                        <span className="menu_btn material-icons">menu</span>
+                        <div className="sidebar_menu_btn_content">
+                            <div className="avatar_container">
+                                <img className="avatar_img" alt="Avatar" src={this.state.user.avatar}></img>
                             </div>
-                            <p className="user_tag">{"#" + this.props.user.username.split("#")[1]}</p>
+                            <div className="user_name">
+                                <div className="user_name_container">
+                                    {this.props.user.username}
+                                    <UserIcons user={this.props.user}></UserIcons>
+                                </div>
+                                <div className="user_tag">
+                                    {AuthProviders.names[this.props.user.authProvider]} account
+                                </div>
+                                {/* <p className="user_tag">{"#" + this.props.user.username.split("#")[1]}</p> */}
+                                {/* <p className="user_tag">Hello there!</p> */}
+                            </div>
                         </div>
                     </div>
-                </div> */}
 
-                {
-                    (this.state.show)
-                    ? <SidebarContentBig logout={this.logout} user={this.props.user}/>
-                    : <SidebarContentSmall logout={this.logout} user={this.props.user}/>
-                }
+                    {
+                        (this.state.show)
+                        ? <SidebarContentBig logout={this.logout} user={this.props.user}/>
+                        : <SidebarContentSmall logout={this.logout} user={this.props.user}/>
+                    }
+                </div>
             </div>
         );
     }

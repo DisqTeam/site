@@ -8,7 +8,7 @@ export default function AuthCallback() {
     let [verify, setVerify] = React.useState("")
 
     React.useEffect(() => {
-        const redirectUri = `${window.location.origin}/auth/cb`
+        const redirectUri = `${window.location.origin}/auth/github`
 
         const qs = new URLSearchParams(window.location.search);
         if(qs.get("debug")) return;
@@ -21,7 +21,7 @@ export default function AuthCallback() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                provider: "discord",
+                provider: "github",
                 code: qs.get("code"),
                 redirect: redirectUri
             })

@@ -2,27 +2,31 @@
 @import './mixins/theme.scss';
 
 .more_container {
-    display: flex;
-    flex-wrap: wrap;
+    // width: 1000px;
+
+    // display: flex;
+    // flex-wrap: wrap;
     
     justify-content: center;
-    align-content: center;
+    // align-content: center;
 
-    margin-left: -25px;
+    // margin-left: -25px;
+    text-align: center;
+    display: grid;
 }
 
 .more_service {
+    text-align: left;
     border-radius: 15px;
 
     margin: 5px;
     @include themed('background-color', 'brand_color_3');
-    width: 200px;
-    height: 200px;
+    height: 80px;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 
     transition: all .2s;
     @include themed('color', 'text_color');
@@ -36,13 +40,34 @@
 
 .more_service h1 {
     margin: 0;
-    font-weight: 500;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.more_service p {
+    margin: 0;
+    font-weight: 400;
 }
 
 .more_service span {
-    font-size: 5vw;
+    font-size: 60px;
+    margin-left: 10px;
 }
 
 .more a {
     text-decoration: none;
+}
+
+
+.more_service .flx-ontop {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 8px;
+}
+
+.more_divide h1 {
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 5px;
 }

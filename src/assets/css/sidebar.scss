@@ -1,0 +1,120 @@
+@import './mixins/theme.scss';
+
+@media only screen and (max-width: 700px) {
+    .sidebar {
+        display: none;
+    }
+
+    .disq_content {
+        margin-top: 100px;
+        margin-left: 25px !important;
+    }
+
+    // .disq_content_center {
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    // }
+
+    .welcomeback {
+        margin-left: 30px;
+    }
+
+    .sideby_center_responsive {
+        align-self: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .sideby_center_responsive p {
+        margin: 0;
+    }
+
+    .sidebar_display_big {
+        height: 92vh;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        background-color: blue;
+        @include themed('background-color', 'brand_color_2');
+    }
+
+    .sidebar_mobile {
+        height: 75px;
+        width: 100%;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        @include themed('background-color', 'brand_color_4');
+        // overflow-x: hidden;
+    
+        display: flex;
+        transition: transform 0.4s ease;
+    }
+
+    .welcomeback {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .settings_user_container .avatar_img {
+        display: none;
+    }
+
+    .more_service {
+        width: 95vw;
+    }
+
+    .more_service p {
+        font-size: 13px;
+    }
+
+    .more_divide h1 {
+        margin-left: 8px;
+    }
+
+    .plus-perk {
+        width: 34vw;
+    }
+    .plus-perk h1 {
+        font-size: 4vw;
+    }
+
+    .settings {
+        & input[type=password] {
+            margin-left: 0px;
+        }
+        & input {
+            margin-top: 4px;
+            width: 94%;
+        }
+    }
+
+    .profile_promo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        padding: 15px;
+        border-radius: 15px;
+        @include themed('background-color', 'brand_color_2');
+        width: 88vw;
+        box-shadow: 0px 7px 28px -6px rgba(0,0,0,0.4);
+
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translate(-50%);
+    }
+}
+
+@media only screen and (min-width: 701px) {
+    .sidebar_mobile {
+        display: none;
+    }
+
+    .more_service {
+        width: 600px;
+    }
+}

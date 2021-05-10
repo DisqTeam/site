@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router'
 import React from 'react';
+import getCookie from './utils/getCookie';
 
 import '../assets/index.scss';
 import '../assets/css/mobile.scss';
@@ -14,21 +15,7 @@ import '../assets/css/spinner.scss'
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/material.css';
 
-function getCookie(cookieString, cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(cookieString);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return false;
-}
+import 'emoji-mart/css/emoji-mart.css'
 
 function Disq({ Component, pageProps }) {
     React.useEffect(() => {

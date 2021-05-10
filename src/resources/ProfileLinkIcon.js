@@ -8,11 +8,17 @@ const ProfileLinkIcon = (url) => {
         case "discordapp.com":
             return ["fab", "discord"];
 
+        case "guilded.gg":
+            return ["fab", "guilded"]
+
         case "twitch.tv":
             return ["fab", "twitch"];
 
         case "github.com":
             return ["fab", "github"];
+
+        case "gitlab.com":
+            return ["fab", "gitlab"]
 
         case "twitter.com":
         case "t.co":
@@ -54,6 +60,10 @@ const ProfileLinkIcon = (url) => {
         case "reddit.com":
         case "redd.it":
             return ["fab", "reddit"]
+        
+        case "deviantart.com":
+            return ["fab", "deviantart"]
+
         
 
         default:

@@ -8,12 +8,13 @@ export default function AuthCallback() {
     let [verify, setVerify] = React.useState("")
 
     React.useEffect(() => {
-        const redirectUri = `${window.location.origin}/auth/cb`
+        const redirectUri = `${window.location.origin}/auth/twitter`
 
         const qs = new URLSearchParams(window.location.search);
         if(qs.get("debug")) return;
         if(qs.get("error") === "access_denied") return window.location.href = "/"
-        if(!qs.get("code")) return setText("No OAuth2 Code!")
+        if(!qs.get("oauth_verifier")) return setText("No OAuth2 Code!")
+        if(!localStorage.twt) return setText("Invalid Twitter authentication token")
 
         fetch(`${config.endpoint}/auth/login`, {
             method: "POST",
@@ -21,8 +22,9 @@ export default function AuthCallback() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                provider: "discord",
-                code: qs.get("code"),
+                provider: "twitter",
+                code: qs.get("oauth_token"),
+                verifier: qs.get("oauth_verifier"),
                 redirect: redirectUri
             })
         })

@@ -190,18 +190,20 @@ class DashboardPage extends React.Component {
                     <p className="login_error">{this.state.errorText}</p>
 
                     <h3>Your Short URLs</h3>
-                    <table className="disq_table">
-                        <thead>
-                            <tr>
-                                <th>Short URL</th>
-                                <th>Original URL</th>
-                                <th className="align_right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.tableData}
-                        </tbody>
-                    </table>
+                    <div className="disq_table_container">
+                        <table className="disq_table">
+                            <thead>
+                                <tr>
+                                    <th>Short URL</th>
+                                    <th>Original URL</th>
+                                    <th className="align_right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.tableData}
+                            </tbody>
+                        </table>
+                    </div>
                     <div className="pagination">
                         <button className="btn_small" onClick={() => this.paginate(-1)}>Previous</button>
                         <p>{this.state.page + 1}/{this.state.maxPages + 1}</p>

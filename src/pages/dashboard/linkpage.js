@@ -4,6 +4,7 @@ import Tippy from '@tippyjs/react';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { Picker } from 'emoji-mart'
 
 import config from '../../config.json'
 
@@ -17,7 +18,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import ProfileLinkIcon from '../../components/ProfileLinkIcon';
+import ProfileLinkIcon from '../../resources/ProfileLinkIcon';
 
 library.add(fab, fas)
 const ErrorBox = withReactContent(Swal)
@@ -62,6 +63,7 @@ class DashboardPage extends React.Component {
             },
             domain: "https://disq.me",
             sidebar: "",
+            showPicker: false,
             tableContent: "",
             newLink: {
                 username: "",
@@ -81,6 +83,7 @@ class DashboardPage extends React.Component {
         this.addService.bind(this);
         this.removeService.bind(this);
         this.updateBanner.bind(this);
+        this.editService.bind(this);
 
         this.bannerInput = React.createRef();
     }
@@ -124,9 +127,19 @@ class DashboardPage extends React.Component {
         for (let i = 0; i < array.length; i++) {
             const link = array[i];
             let a = <tr index={i}>
+            <td>
+                <FontAwesomeIcon onClick={() => this.reorderService(i, -1)} className="profile_editfield" size="1x" icon={['fas', 'caret-square-up']}/>
+                <FontAwesomeIcon onClick={() => this.reorderService(i, 1)} className="profile_editfield" size="1x" icon={['fas', 'caret-square-down']}/>
+            </td>
             <td><FontAwesomeIcon className="profile_btn_icon" size="2x" icon={ProfileLinkIcon(link.url)}/></td>
-            <td><p>{link.username}</p></td>
-            <td>{link.url}</td>
+            <td>
+                {link.username}
+                <FontAwesomeIcon onClick={() => this.editServiceName(i)} className="profile_editfield" size="1x" icon={["fas", "edit"]}/>
+            </td>
+            <td>
+                {link.url}
+                <FontAwesomeIcon onClick={() => this.editService(i)} className="profile_editfield" size="1x" icon={["fas", "edit"]}/>
+            </td>
             <td className="align_right">
                 <Tippy theme="disq" animation="discord-anim" content="Remove" placement="top">
                     <button className="btn_table btn_delete btn_rod" onClick={() => this.removeService(i)}>
@@ -213,6 +226,82 @@ class DashboardPage extends React.Component {
         this.linksToHtml(array)
     }
 
+    editService = (i) => {
+        let array = this.state.profileData.links
+        this.setState({
+            profileData: {
+                ...this.state.profileData,
+                links: array
+            }
+        })
+        
+        ErrorBox.fire({
+            icon: 'question',
+            title: "Edit URL",
+            text: "New text:",
+            html: <input 
+            className="profile_urlbox" 
+            placeholder="https://dalux.news"
+            onChange={(e) => this.setState({newLink: {...this.state.newLink, url: e.target.value}})}
+            ></input>
+        })
+        .then(sa => {
+            if(!this.validURL(this.state.newLink.url)) return ErrorBox.fire({
+                icon: 'error',
+                title: "Error",
+                text: "Invalid URL input"
+            })
+            array[i].url = this.state.newLink.url
+            this.linksToHtml(array)
+        })
+    }
+
+    editServiceName = (i) => {
+        let array = this.state.profileData.links
+        this.setState({
+            profileData: {
+                ...this.state.profileData,
+                links: array
+            }
+        })
+        
+        ErrorBox.fire({
+            icon: 'question',
+            title: "Edit URL",
+            text: "New text:",
+            html: <input 
+            className="profile_urlbox" 
+            placeholder="My Cool Service"
+            onChange={(e) => this.setState({newLink: {...this.state.newLink, username: e.target.value}})}
+            ></input>
+        })
+        .then(sa => {
+            array[i].username = this.state.newLink.username
+            this.linksToHtml(array)
+        })
+    }
+
+    reorderService = (i, pos) => {
+        let array = this.state.profileData.links
+        let newPos = i + pos
+
+        console.log(newPos)
+        if(newPos < 0) return;
+        if(newPos > array.length) return;
+
+        let el = array[i];
+        array.splice(i, 1);
+        array.splice(newPos, 0, el);
+
+        this.setState({
+            profileData: {
+                ...this.state.profileData,
+                links: array
+            }
+        })
+        this.linksToHtml(array)
+    }
+
     updateBanner = () => {
         console.log(this.bannerInput.current.files)
         if(this.bannerInput.current.files.length < 1) return ErrorBox.fire({
@@ -263,30 +352,55 @@ class DashboardPage extends React.Component {
                                 <div className="sideby_center sideby">
                                     <p className="switch_subtitle_r switch_subtitle">Enable linkpage</p>
                                     <label className="switch">
-                                            <input type="checkbox" defaultChecked={this.state.profileData.customUrl} onChange={(e) => this.setState({profileData: {...this.state.profileData, enabled: e.target.checked}})}/>
+                                            <input type="checkbox" defaultChecked={this.state.profileData.enabled} onChange={(e) => this.setState({profileData: {...this.state.profileData, enabled: e.target.checked}})}/>
                                             <span className="slider round"></span>
                                     </label>
                                 </div>
 
-                                <div className="sideby_center sideby">
+                                <div className="sideby_center_responsive sideby_center sideby">
                                     <p className="switch_subtitle_r switch_subtitle">Custom URL:</p>
-                                    <p className="profile_editor_customurl_beforeurl">https://disq.me/u/</p>
-                                    <input 
-                                    className="profile_editor_customurl" 
-                                    placeholder="amazingperson" 
-                                    value={this.state.profileData.customUrl}
-                                    onChange={(e) => this.setState({profileData: {...this.state.profileData, customUrl: e.target.value}})}
-                                    ></input>
+                                    <div className="sideby_center sideby">
+                                        <p className="profile_editor_customurl_beforeurl">https://disq.me/u/</p>
+                                        <input 
+                                        className="profile_editor_customurl" 
+                                        placeholder="amazingperson" 
+                                        value={this.state.profileData.customUrl}
+                                        onChange={(e) => this.setState({profileData: {...this.state.profileData, customUrl: e.target.value}})}
+                                        >
+                                        </input>
+                                    </div>
                                 </div>
 
                                 <p>Bio ({(this.state.profileData.bio.length >= 0) ? 240 - this.state.profileData.bio.length : "0"} characters left)</p>
-                                <textarea 
+                                <div className="profile_bio_container">
+                                    <span className="profile_editor_emojipicker material-icons" onClick={() =>
+                                        this.setState({showPicker: !this.state.showPicker})
+                                    }>emoji_emotions</span>
+                                    <textarea 
                                     className="profile_editor_bio"
                                     placeholder={"I'm " + this.state.user.username.split("#")[0] + " and I like to do stuff."}
                                     onChange={(e) => this.setState({profileData: {...this.state.profileData, bio: e.target.value}})}
                                     value={this.state.profileData.bio}
-                                >
-                                </textarea>
+                                    >
+                                    </textarea>
+                                </div>
+
+                                <div style={{position: "relative"}}>
+                                {
+                                    this.state.showPicker &&
+                                    <Picker 
+                                    className="emojipicker" 
+                                    set='twitter' 
+                                    theme='light' 
+                                    title="Pick an emoji" 
+                                    showPreview={false} 
+                                    showSkinTones={false}
+                                    onSelect={(e) => {
+                                        this.setState({profileData: {...this.state.profileData, bio: this.state.profileData.bio + e.native}})
+                                    }}
+                                    />
+                                }
+                                </div>
                             </div>
 
                             <div className="profile_editor_box">
@@ -305,38 +419,42 @@ class DashboardPage extends React.Component {
                         <div className="profile_editor_box_big profile_editor_box">
                             <h2 className="mg_b">Links</h2>
                             
-                            <table className="profile_editor_table disq_table">
-                                <thead>
-                                    <tr>
-                                        <th className="icon_display" nowrap="true"></th>
-                                        <th>
-                                            Username/Name
-                                        </th>
-                                        <th>
-                                            URL
-                                        </th>
-                                        <th className="align_right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><FontAwesomeIcon className="profile_btn_icon" size="2x" icon={["fas", "plus"]}/></td>
-                                        <td><p><input 
-                                            placeholder="My Cool Service"
-                                            onChange={(e) => this.setState({newLink: {...this.state.newLink, username: e.target.value}})}
-                                        ></input></p></td>
-                                        <td><input 
-                                            className="profile_urlbox" 
-                                            placeholder="https://dalux.news"
-                                            onChange={(e) => this.setState({newLink: {...this.state.newLink, url: e.target.value}})}
-                                        ></input></td>
-                                        <td className="align_right">
-                                            <button onClick={this.addService} className="btn_porp btn_small">Add</button>
-                                        </td>
-                                    </tr>
-                                    { this.state.tableContent }
-                                </tbody>
-                            </table>
+                            <div className="disq_table_container">
+                                <table className="profile_editor_table disq_table">
+                                    <thead>
+                                        <tr>
+                                            <th className="icon_display" nowrap="true"></th>
+                                            <th className="icon_display" nowrap="true"></th>
+                                            <th>
+                                                Username/Name
+                                            </th>
+                                            <th>
+                                                URL
+                                            </th>
+                                            <th className="align_right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td><FontAwesomeIcon className="profile_btn_icon" size="2x" icon={["fas", "plus"]}/></td>
+                                            <td><p><input 
+                                                placeholder="My Cool Service"
+                                                onChange={(e) => this.setState({newLink: {...this.state.newLink, username: e.target.value}})}
+                                            ></input></p></td>
+                                            <td><input 
+                                                className="profile_urlbox" 
+                                                placeholder="https://dalux.news"
+                                                onChange={(e) => this.setState({newLink: {...this.state.newLink, url: e.target.value}})}
+                                            ></input></td>
+                                            <td className="align_right">
+                                                <button onClick={this.addService} className="btn_porp btn_small">Add</button>
+                                            </td>
+                                        </tr>
+                                        { this.state.tableContent }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <div className="marginbottom sideby">

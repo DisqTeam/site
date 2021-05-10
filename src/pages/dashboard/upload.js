@@ -133,7 +133,7 @@ class DashboardPage extends React.Component {
                         )}
                     </Dropzone>
 
-                    <div className="sideby_center sideby">
+                    <div className="sideby_center_responsive sideby_center sideby">
                         <select className="shx_select" name="url" onChange={(e) => this.setState({baseUrl: e.target.value})}>
                                 <Domains/>
                         </select>
