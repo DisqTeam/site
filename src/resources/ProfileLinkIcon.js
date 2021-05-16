@@ -65,8 +65,12 @@ const ProfileLinkIcon = (url) => {
             return ["fab", "deviantart"]
 
         
-
         default:
+            // regexs for funky urls
+            switch(true) {
+                case new RegExp("/.*[.]itch.io/gm").test(actual_url):
+                    return ["fab", "itch-io"];
+            }
             return ["fas", "link"];
     }
 }

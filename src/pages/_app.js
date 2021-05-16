@@ -11,6 +11,7 @@ import '../assets/css/profile.scss'
 import '../assets/css/404.scss'
 import '../assets/css/more.scss'
 import '../assets/css/spinner.scss'
+import '../assets/css/landv2.scss'
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/material.css';
@@ -32,7 +33,7 @@ function Disq({ Component, pageProps }) {
     const router = useRouter()
 
     return (
-        <main>
+        <main style={{height: "100%"}}>
             {
             (!router.pathname.includes("dashboard")) ? ""
             :   <div className="curtain" id="curtain">

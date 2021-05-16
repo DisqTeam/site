@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { Spring, useSpring } from "react-spring";
 import AuthProviders from "../resources/AuthProviders";
 
 library.add(fab, fas);

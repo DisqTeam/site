@@ -1,180 +1,191 @@
-import React from "react";
-import Head from "../components/Head";
-import Image from "next/image";
+import React, { Component, useRef, useState, Suspense } from 'react';
+import Link from 'next/link'
 import Twemoji from "react-twemoji";
-import check_token from "../components/TokenChecker";
+import Tilt from 'react-parallax-tilt';
 
-import config from "../config.json";
+import Head from "../components/Head";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
-class index extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      box_state: <BoxMain SSR={this.setStateRemote} />,
-      back_button: false,
-      box_animate: false,
-    };
-    this.setStateRemote.bind(this);
-  }
+library.add(fab, fas)
 
-  setStateRemote = (st) => {
-    this.setState(st);
-  };
-
-  render() {
+function ThreeIcon(props){
+    const mesh = useRef()
+    const fbx = useFBX('/assets/land/upload.fbx')
     return (
-      <Twemoji options={{ className: "twemoji" }}>
-        <Head
-          title="Home"
-          description="File upload, short urls and much more."
-        />
-        <main>
-          <div className="stringy_software_watermark">
-            <p>
-              A <b><a href="https://stringy.software">Stringy Software</a></b> project
-            </p>
-            <p>
-              Inspired by{" "}
-              <b><a href="https://github.com/WeebDev/lolisafe">lolisafe</a></b>
-            </p>
-          </div>
-          <div className="supercenter center main_box">
-            {this.state.back_button ? (
-              <BackButton SSR={this.setStateRemote} />
-            ) : (
-              ""
-            )}
-            {this.state.box_state}
-            <Features />
-          </div>
-        </main>
-      </Twemoji>
-    );
-  }
+      <primitive object={fbx} scale={0.01}></primitive>
+    )
 }
+export default class index extends Component {
+  constructor(){
+    super()
 
-class BackButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props.SSR.bind(this);
-  }
-
-  render() {
-    return (
-      <button
-        onClick={() =>
-          this.props.SSR({
-            box_state: <BoxMain SSR={this.props.SSR} />,
-            box_animate: true,
-          })
-        }
-        className="login_back_button"
-      >
-        Back
-      </button>
-    );
-  }
-}
-
-class BoxMain extends React.Component {
-  constructor(props) {
-    super(props);
     this.state = {
-      loggedIn: false,
-    };
-    this.props.SSR.bind(this);
-    this.login.bind(this);
-    this.btn = React.createRef();
-  }
-
-  async componentDidMount() {
-    this.props.SSR({ back_button: false });
-
-    const creds = await check_token();
-    if (creds.success) {
-      this.setState({ loggedIn: true });
+      blur: 0
     }
   }
 
-  login = () => {
-    if(this.state.loggedIn) window.location.href = `/dashboard`
-    else window.location.href = `/login`;
-  };
+  listenScrollEvent = (e) => {
+    const maxBlur = 50;
+    const scrollPercent = Math.floor(window.scrollY / window.innerHeight * 100)
+    const blurAmnt = (maxBlur/100) * scrollPercent
 
+    this.setState({blur: blurAmnt})
+  }
+
+  componentDidMount(){
+    window.addEventListener('scroll', this.listenScrollEvent)
+  }
+  
   render() {
     return (
-      <div className="box_main">
-        {/* <div className="main_text_shape"> */}
-        {/* <h1 className="main_text">Disq</h1> */}
-        {/* </div> */}
-        <div className="box_main_content">
-          <img className="main_logo" src="/assets/logo512.png" alt="Disq" />
-          <div className="box_main_text">
-            <h3 className="tagline_text">
-              File upload, short urls and much more.
-            </h3>
-            {config.comingSoonMode ? (
-              <p>Coming soon.</p>
-            ) : (
-              <div className="main_btn_container">
-                <button onClick={this.login} className="btn_porp">
-                  {this.state.loggedIn ? "Dashboard" : "Login"}
-                </button>
-              </div>
-            )}
+      <div className="landv2">
+        <Head
+          title="Free web tools"
+          description="Screenshot upload, Short URLs and much more."
+        />
+        <Twemoji options={{ className: "twemoji" }}>
+          {/* <nav className="navigation">
+            <p></p>
+          </nav> */}
+
+          <div className="top_container">
+            <div className="top" style={{backdropFilter: `blur(${this.state.blur}px)`}}>
+                <div className="top_text">
+                  <h1>Web tools, done right.</h1>
+                  <h3>Simplify your online life with Disq 🚀</h3>
+                  <Link href="/login">
+                    <button className="login_btn">
+                      Login
+                    </button>
+                  </Link>
+                </div>
+                <div className="top_img">
+                  <Tilt>
+                    <img src="/assets/logo512.png"></img>
+                  </Tilt>
+                </div>
+            </div>
           </div>
-        </div>
-        <p className="legal">
-          By logging in, you agree to <br />
-          our <a href="/privacy">Privacy Policy</a> and{" "}
-          <a href="/tos">Terms of Service</a>
-        </p>
+          <div className="page">
+            <div className="features">
+              <div className="features_content">
+                <div className="feature_container">
+                  <FontAwesomeIcon icon={["fas", "cloud-upload-alt"]} size="4x" fixedWidth></FontAwesomeIcon>
+                  <div className="feature_text">
+                    <h1>Free, easy screenshot uploading</h1>
+                    <p>Upload your files with ease to range of different domains.</p>
+                  </div>
+                </div>
+
+                <div className="feature_container">
+                  <FontAwesomeIcon icon={["fas", "link"]} size="4x" fixedWidth></FontAwesomeIcon>
+                  <div className="feature_text">
+                    <h1>Quick, small Short URLs</h1>
+                    <p>Make it short. Make it clickable. That’s a Short URL.</p>
+                  </div>
+                </div>
+
+                <div className="feature_container">
+                  <FontAwesomeIcon icon={["fas", "align-left"]} size="4x" fixedWidth></FontAwesomeIcon>
+                  <div className="feature_text">
+                    <h1>Shout your socials with Linkpage</h1>
+                    <p>Plug your social media and more proudly with a custom link</p>
+                  </div>
+                </div>
+
+                <div className="feature_container">
+                  <div className="feature_text">
+                    <h1>Even more!</h1>
+                    <ul>
+                      <li>Public API</li>
+                      <li>ShareX support</li>
+                      <li>Open source on GitHub</li>
+                      <li>Login with Discord, Twitter and GitHub</li>
+                      <li>Made with ♥ by a tiny team all over the world</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Wave2/>
+
+          <div className="page" style={{backgroundColor: "#ededed", marginTop: "-15px"}}>
+            <h1 className="bigpagetitle">Convinced?</h1>
+            <div className="convince_container">
+              <Link href="/login">
+                <button className="convince_btn login_btn btn_porp">
+                  Sign Up
+                </button>
+              </Link>
+            </div>
+          </div>
+          
+
+          <div className="footer">
+            <p className="footer_legal">
+              {/* Powered by Mangoes */}
+              ©️ 2021 Disq Software<br/>
+              <a href="/tos">Terms of Service</a><br/>
+              <a href="/privacy">Privacy Policy</a><br/>
+            </p>
+            <div className="vl"/>
+            <div className="footer_socials">
+              <a href="https://disq.me/s/discord">
+                <FontAwesomeIcon icon={["fab", "discord"]} size="2x"></FontAwesomeIcon>
+              </a>
+              <a href="https://twitter.com/disqme">
+                <FontAwesomeIcon icon={["fab", "twitter"]} size="2x"></FontAwesomeIcon>
+              </a>
+              <a href="https://github.com/disqTeam">
+                <FontAwesomeIcon icon={["fab", "github"]} size="2x"></FontAwesomeIcon>
+              </a>
+            </div>
+          </div>
+        </Twemoji>
       </div>
-    );
+    )
   }
 }
 
-function Features() {
+function Wave1() {
   return (
-    <div className="box_features box_main">
-      <h3 className="features_title">Features</h3>
-      <div className="features">
-        <div className="feature">
-          <span className="material-icons">description</span>
-          <p>Free, easy file uploading</p>
-        </div>
-        <div className="feature">
-          <span className="material-icons">link</span>
-          <p>Short URL creation</p>
-        </div>
-        <div className="feature">
-          <span className="material-icons">upload</span>
-          <p>Compatible with ShareX</p>
-        </div>
-        <div className="feature">
-          <span className="material-icons">code</span>
-          <p>Open source</p>
-        </div>
-        <div className="feature">
-          <span className="material-icons">vpn_key</span>
-          <p>Log in with Discord</p>
-        </div>
-        <div className="feature">
-          <span className="material-icons">public</span>
-          <p>Selection of domains to use</p>
-        </div>
-        <div className="feature">
-          <span className="material-icons">person</span>
-          <p>Made by 2 people with too much time</p>
-        </div>
-      </div>
-      <div className="features_buttons">
-        <a href="https://github.com/disqTeam">
-          <img className="gh" src="/assets/logos/github.png" alt="GitHub" />
-        </a>
-      </div>
-    </div>
+    <svg className="land_wave1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        // fill="rgba(124,240,10,1)"
+        // fill="transparent"
+        d="M0 64h48c48 0 144 0 240 37.3C384 139 480 213 576 240c96 27 192 5 288-32s192-91 288-80 192 85 240 122.7l48 37.3v32H0z"
+      ></path>
+    </svg>
   );
+  // return (
+  //   <svg style={{backgroundColor: "#fff"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  //     <defs>
+  //       <linearGradient id="grad" x1="0%" x2="100%" y1="0%" y2="0%">
+  //         <stop offset="0%" stopColor="#6812ca"></stop>
+  //         <stop offset="100%" stopColor="#bb2be6"></stop>
+  //       </linearGradient>
+  //     </defs>
+  //     <path
+  //       // fill="url(#grad)"
+  //       fill="rgba(124,240,10,0)"
+  //       d="M0,160L60,149.3C120,139,240,117,360,106.7C480,96,600,96,720,112C840,128,960,160,1080,160C1200,160,1320,128,1380,112L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+  //     ></path>
+  //   </svg>
+  // );
 }
 
-export default index;
+function Wave2() {
+  return (
+    <svg style={{backgroundColor: "#ededed", marginTop: "-20px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#fff"
+        d="M0,256L80,256C160,256,320,256,480,229.3C640,203,800,149,960,154.7C1120,160,1280,224,1360,256L1440,288L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+      ></path>
+    </svg>
+  );
+}

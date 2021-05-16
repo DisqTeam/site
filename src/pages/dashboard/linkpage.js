@@ -267,7 +267,7 @@ class DashboardPage extends React.Component {
         
         ErrorBox.fire({
             icon: 'question',
-            title: "Edit URL",
+            title: "Edit name",
             text: "New text:",
             html: <input 
             className="profile_urlbox" 
