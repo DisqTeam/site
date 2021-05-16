@@ -1,10 +1,10 @@
 import React from "react";
-import Head from "../components/Head";
+import Head from "../../components/Head";
 import Image from "next/image";
 import Twemoji from "react-twemoji";
 import check_token from "../components/TokenChecker";
 
-import config from "../config.json";
+import config from "../../config.json";
 
 class index extends React.Component {
   constructor(props) {
