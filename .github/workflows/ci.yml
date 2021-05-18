@@ -13,4 +13,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: cd /root/disq/site && git pull && yarn install && yarn run build && pm2 restart disq_site
+        # script: cd /root/disq/site && git pull && yarn install && yarn run build && pm2 restart disq_site
+        script: cd /root/disq/site && git pull && npm i && npm run build && pm2 restart disq_site
