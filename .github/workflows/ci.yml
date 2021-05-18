@@ -16,6 +16,6 @@ jobs:
         script: |
           cd /root/disq/site 
           git pull 
-          yarn
-          yarn build
-          pm2 restart disq_site
+          ~/.nvm/versions/node/v15.14.0/bin/yarn
+          ~/.nvm/versions/node/v15.14.0/bin/yarn build
+          ~/.nvm/versions/node/v15.14.0/bin/pm2 restart disq_site
